@@ -1,0 +1,921 @@
+[
+    {
+        "id": "be37baefd44701f4",
+        "type": "tab",
+        "label": "Piggy Bank",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c7d06be75cc672d0",
+        "type": "ui_button",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "group": "5b3be7935e012278",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Log in",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 340,
+        "wires": [
+            [
+                "bb2b699142e15cb2"
+            ]
+        ]
+    },
+    {
+        "id": "c5701106adcd3728",
+        "type": "mqtt in",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "Login",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fbbca1462a80364a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "be85b421aa474881"
+            ]
+        ]
+    },
+    {
+        "id": "be85b421aa474881",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug login",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b195d202455f3b0d",
+        "type": "comment",
+        "z": "be37baefd44701f4",
+        "name": "Password Setup",
+        "info": "\n",
+        "x": 120,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "5439948429d2b247",
+        "type": "ui_text_input",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "label": "Password",
+        "tooltip": "",
+        "group": "5b3be7935e012278",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "password",
+        "delay": "100",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 160,
+        "y": 220,
+        "wires": [
+            [
+                "d8d7e50f37e372fe",
+                "9de2411b5a1aa6b4"
+            ]
+        ]
+    },
+    {
+        "id": "bb2b699142e15cb2",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 1",
+        "func": "global.set(\"Login\", false);\nif (msg.payload == 1){\n\n    if (global.get(\"Password\") == global.get(\"SetPassword\")){\n        \n        msg.payload =true;\n        global.set(\"Login\", true);\n\n        return msg;\n    }\n    else {\n        msg.payload = false;\n        return msg;\n    }\n\n}\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 340,
+        "wires": [
+            [
+                "2296b576986bed4f",
+                "72c869e2c7470e23"
+            ]
+        ]
+    },
+    {
+        "id": "72c869e2c7470e23",
+        "type": "mqtt out",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "Login",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbbca1462a80364a",
+        "x": 510,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d8d7e50f37e372fe",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 2",
+        "func": "global.set(\"Password\", msg.payload);\nmsg.payload = global.get(\"Password\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "7f88ca6dee4a24a3"
+            ]
+        ]
+    },
+    {
+        "id": "7f88ca6dee4a24a3",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9de2411b5a1aa6b4",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 300,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2296b576986bed4f",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "91359c0ed1da6f39",
+        "type": "ui_text_input",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "label": "Set Password",
+        "tooltip": "",
+        "group": "5b3be7935e012278",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "password",
+        "delay": "100",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "5229a04ac9a99b7a",
+                "f655ea940399b38b"
+            ]
+        ]
+    },
+    {
+        "id": "5229a04ac9a99b7a",
+        "type": "ui_text",
+        "z": "be37baefd44701f4",
+        "group": "5b3be7935e012278",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Accepted Password: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-right",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "10",
+        "color": "#ededed",
+        "x": 400,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f655ea940399b38b",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 4",
+        "func": "global.set(\"SetPassword\", msg.payload);\nmsg.payload = global.get(\"SetPassword\");\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "696157deade1476a",
+        "type": "ui_button",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "group": "5b3be7935e012278",
+        "order": 9,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Clear Balance",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 860,
+        "wires": [
+            [
+                "7f98b854c142e2a3"
+            ]
+        ]
+    },
+    {
+        "id": "7f98b854c142e2a3",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function clear balance",
+        "func": "\nglobal.set(\"ClearBalance\", false);\nif (msg.payload == 1){\n    if (global.get(\"Login\") ==true){\n        global.set(\"ClearBalance\", true);\n        msg.payload =true;\n        return msg;\n    }\n    else {\n        global.set(\"ClearBalance\", false);\n        msg.payload = false;\n        return msg;\n    }\n}\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 860,
+        "wires": [
+            [
+                "9c078405f195074b",
+                "82ae25e7bff78211"
+            ]
+        ]
+    },
+    {
+        "id": "9c078405f195074b",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 920,
+        "wires": []
+    },
+    {
+        "id": "daa2416ba53d16ec",
+        "type": "comment",
+        "z": "be37baefd44701f4",
+        "name": "Clear Balance",
+        "info": "\n",
+        "x": 110,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "82ae25e7bff78211",
+        "type": "mqtt out",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "ClearBalance",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "fbbca1462a80364a",
+        "x": 660,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "42f623e9e48c0f52",
+        "type": "mqtt in",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "ClearBalance",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "fbbca1462a80364a",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 960,
+        "wires": [
+            [
+                "6a3ad7f3a7ab0456"
+            ]
+        ]
+    },
+    {
+        "id": "6a3ad7f3a7ab0456",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug clear balance",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "4f3306ab1a72ba5e",
+        "type": "comment",
+        "z": "be37baefd44701f4",
+        "name": "Unlock",
+        "info": "\n",
+        "x": 90,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "fa77934b6799b6e8",
+        "type": "ui_button",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "group": "5b3be7935e012278",
+        "order": 10,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Unlock Piggy Bank",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1100,
+        "wires": [
+            [
+                "f76a65c9bf67deda"
+            ]
+        ]
+    },
+    {
+        "id": "f76a65c9bf67deda",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 6",
+        "func": "if (msg.payload == 1){\n    if (global.get(\"Login\") ==true){\n        \n        msg.payload =true;\n        return msg;\n    }\n    else {\n        msg.payload = false;\n        return msg;\n    }\n\n}\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 1100,
+        "wires": [
+            [
+                "6ab433d662107e97",
+                "cf6f1972ca135128"
+            ]
+        ]
+    },
+    {
+        "id": "6ab433d662107e97",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "cf6f1972ca135128",
+        "type": "mqtt out",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "unlock",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fde701c.6c6c3",
+        "x": 510,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "532d1ca9ac2bc645",
+        "type": "mqtt in",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "unlock",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8fde701c.6c6c3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 1200,
+        "wires": [
+            [
+                "6f02101b6447c1c0"
+            ]
+        ]
+    },
+    {
+        "id": "6f02101b6447c1c0",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug unlock",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 350,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "a9c4b45b6ee13591",
+        "type": "comment",
+        "z": "be37baefd44701f4",
+        "name": "Total balance display",
+        "info": "\n",
+        "x": 130,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "3a5c4e5022577dc4",
+        "type": "mqtt in",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "topic": "balance_ece5160",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8fde701c.6c6c3",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 700,
+        "wires": [
+            [
+                "99176d0f3590c252"
+            ]
+        ]
+    },
+    {
+        "id": "99176d0f3590c252",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 7",
+        "func": "if (global.get(\"Login\") == true) {\nif (global.get(\"ClearBalance\") == false) {\n// if (global.get(\"Login\") != true) {\n//     if (global.get(\"Login\") !=true){\n//         msg.payload = \"Login to see\";\n//         return msg;\n//     }\n//     else {\n//         //global.set(\"Balance\", 100);\n//         msg.payload = global.get(\"Balance\");\n//         return msg;\n        \n//     }\n// }\n    return msg;\n}\nelse{\n    msg.payload =\"0\";\n    global.set(\"ClearBalance\", false);\n    return msg;\n}\n\n\n}\nelse{\n    msg.payload = \"Login to see\";\n         return msg;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 700,
+        "wires": [
+            [
+                "ab9ddfdb1476adfb",
+                "5b7ea73a63ca2e4a",
+                "76b3540b8d0ab80a"
+            ]
+        ]
+    },
+    {
+        "id": "4f4c3f6248bf2119",
+        "type": "inject",
+        "z": "be37baefd44701f4",
+        "d": true,
+        "name": "money",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "400",
+        "payloadType": "str",
+        "x": 160,
+        "y": 640,
+        "wires": [
+            [
+                "12b5e770c8e40d72"
+            ]
+        ]
+    },
+    {
+        "id": "ab9ddfdb1476adfb",
+        "type": "ui_text",
+        "z": "be37baefd44701f4",
+        "d": true,
+        "group": "5b3be7935e012278",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Balance (USD)",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "18",
+        "color": "#e51010",
+        "x": 600,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5b7ea73a63ca2e4a",
+        "type": "debug",
+        "z": "be37baefd44701f4",
+        "name": "debug balance",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "822aba0ed6e4f923",
+        "type": "ui_button",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "group": "5b3be7935e012278",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Log out",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 160,
+        "y": 420,
+        "wires": [
+            [
+                "a379c70f9ea5903b"
+            ]
+        ]
+    },
+    {
+        "id": "a379c70f9ea5903b",
+        "type": "function",
+        "z": "be37baefd44701f4",
+        "name": "function 8",
+        "func": "global.set(\"Login\", false);\n\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76b3540b8d0ab80a",
+        "type": "ui_gauge",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "group": "5b3be7935e012278",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Balance",
+        "label": "USD",
+        "format": "{{msg.payload}}",
+        "min": 0,
+        "max": "500",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "300",
+        "seg2": "400",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "12b5e770c8e40d72",
+        "type": "mqtt out",
+        "z": "be37baefd44701f4",
+        "d": true,
+        "name": "Balance",
+        "topic": "Balance",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fde701c.6c6c3",
+        "x": 360,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "72d3025748878d28",
+        "type": "http in",
+        "z": "be37baefd44701f4",
+        "name": "nick",
+        "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fdirectory.seas.upenn.edu%2Fnick-mcgill%2F&psig=AOvVaw0YbN7Ob_AIzaM4e79T7cRa&ust=1700795565850000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOiU4q-T2YIDFQAAAAAdAAAAABAD",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 1300,
+        "wires": [
+            [
+                "5366a58936ced556"
+            ]
+        ]
+    },
+    {
+        "id": "18f5d2872d33623d",
+        "type": "template",
+        "z": "be37baefd44701f4",
+        "name": "display pics",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<img src=\"data:image/jpg;base64,{{{payload}}}\">",
+        "output": "str",
+        "x": 730,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5366a58936ced556",
+        "type": "html",
+        "z": "be37baefd44701f4",
+        "name": "",
+        "property": "payload",
+        "outproperty": "payload",
+        "tag": "",
+        "ret": "html",
+        "as": "single",
+        "x": 530,
+        "y": 1300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "26bb9248e22b19b6",
+        "type": "ui_media",
+        "z": "be37baefd44701f4",
+        "group": "5b3be7935e012278",
+        "name": "",
+        "width": "5",
+        "height": "2",
+        "order": 1,
+        "category": "Logo",
+        "file": "UniversityofPennsylvania_FullLogo_RGB-4_0.png",
+        "layout": "center",
+        "showcontrols": true,
+        "loop": true,
+        "onstart": false,
+        "scope": "local",
+        "tooltip": "",
+        "x": 170,
+        "y": 1400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5b3be7935e012278",
+        "type": "ui_group",
+        "name": "Co1n1oT",
+        "tab": "d5f9cb117308237e",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fbbca1462a80364a",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8fde701c.6c6c3",
+        "type": "mqtt-broker",
+        "name": "broker.hivemq.com:1883",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "clientId-NeII0rLFAO",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d5f9cb117308237e",
+        "type": "ui_tab",
+        "name": "Bank",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
