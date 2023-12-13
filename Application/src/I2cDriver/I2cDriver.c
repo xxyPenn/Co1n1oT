@@ -405,7 +405,7 @@ int32_t I2cReadDataWait(I2C_Data *data, const TickType_t delay, const TickType_t
 
     //---2. Initiate sending data
 
-    error = I2cWriteData(data);
+    error = I2cWriteDatanostop(data);
     if (ERROR_NONE != error) {
         goto exitError0;
     }
@@ -454,4 +454,37 @@ exitError0:
     error = I2cFreeMutex();
     // xSemaphoreGive(semHandle);
     return error;
+}
+int32_t I2cWriteDatanostop(I2C_Data *data){
+	
+	int32_t error = ERROR_NONE;
+	enum status_code hwError;
+	struct i2c_master_module *I2CBusHw = NULL;
+	I2C_Bus_State * busI2cState;
+	struct i2c_master_packet *writePacket = NULL;
+	struct i2c_master_packet *readPacket = NULL;
+	
+	//Check parameters
+	if(data == NULL || data->msgOut == NULL){
+		error = ERR_INVALID_ARG;
+		goto exit;
+	}
+
+	//Prepare to write
+	sensorPacketWrite.address = data->address;
+	sensorPacketWrite.data = (uint8_t*) data->msgOut;
+	sensorPacketWrite.data_length = data->lenOut;
+
+	//Write
+
+	hwError = i2c_master_write_packet_job_no_stop(&i2cSensorBusInstance, &sensorPacketWrite);
+
+	if(STATUS_OK != hwError)
+	{
+		error = ERROR_IO;
+		goto exit;
+	}
+	
+	exit:
+	return error;
 }

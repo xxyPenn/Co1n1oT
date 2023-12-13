@@ -94,6 +94,7 @@ int32_t I2cFreeMutex(void);
 int32_t I2cReadData(I2C_Data *data);
 int32_t I2cWriteData(I2C_Data *data);
 int32_t I2cInitializeDriver(void);
+int32_t I2cWriteDatanostop(I2C_Data *data);
 void I2cDriverRegisterSensorBusCallbacks(void);
 void I2cSensorsError(struct i2c_master_module *const module);
 void I2cSensorsRxComplete(struct i2c_master_module *const module);

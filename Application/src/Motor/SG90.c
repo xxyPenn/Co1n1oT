@@ -91,7 +91,6 @@ void unlock_pwm(void) {
 	// Initialize TCC0 for PWM on Channel 2 with 50Hz frequency and 10% duty cycle
 
 	tcc_pwm_init(TCC1, 0, MOTOR_STATUS_OPEN);// unlock state motor
-
 }
 void lock_pwm(void) {
 	// Initialize TCC0 for PWM on Channel 2 with 50Hz frequency and 10% duty cycle

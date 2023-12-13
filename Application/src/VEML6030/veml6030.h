@@ -80,6 +80,7 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer);
 double toLux(uint16_t total_num);
 uint32_t veml6030_power_on();
 
+double toLux(uint16_t total_num);
 
 uint32_t veml6030_shutdown();
 
