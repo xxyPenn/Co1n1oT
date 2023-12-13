@@ -20,6 +20,7 @@ const float calibration_factor = 0.0288;
 
 uint8_t msgOutal[64];
 I2C_Data AmbientLightData;
+static xSemaphoreHandle als_data_sent;
 
 int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer) {
 	uint8_t payload[1] = {reg};
@@ -30,11 +31,29 @@ int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer) {
 	AmbientLightData.msgIn = buffer;
 	AmbientLightData.lenIn = 2;
 	uint8_t error = 0;
+	
+	//xSemaphoreTake(als_data_sent, portMAX_DELAY);
+	//vTaskSuspendAll();
 	error = I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+	//xTaskResumeAll();
+	//xSemaphoreGive(als_data_sent);
+	
 	if (error != ERROR_NONE) {
 		LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
 	}
-	//*value = (payload[1] << 8) | payload[0]; need to transfer to somewhere else
+	//for(int idx = 0; idx < 20; idx++){
+		//LogMessage(LOG_ERROR_LVL, "%2x", buffer[idx]);
+	//}
+	////*value = (payload[1] << 8) | payload[0]; need to transfer to somewhere else
+	//uint8_t alsdata[20];
+//
+	//uint16_t value = (AmbientLightData.msgIn[1] << 8) | AmbientLightData.msgIn[0];
+	//double luxresult = toLux(value);
+	//char dec_string[6];
+	//if (AmbientLightData.msgIn[1]>>4 == 0){
+		//SerialConsoleWriteString("Coin passing!\r\n");
+		//delay_ms(250);
+	//}
 	return error;
 }
 
@@ -100,6 +119,7 @@ int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer) {
 // Initialize VEML6030
 int32_t veml6030_init() {
 	LogMessage(LOG_INFO_LVL, "Initializing VEML6030...");
+	als_data_sent = xSemaphoreCreateMutex();
 	//vTaskDelay(2500);
 	// Configure the ALS_CONF register with desired settings
     //Set gain x2, integration time 100 ms, power on

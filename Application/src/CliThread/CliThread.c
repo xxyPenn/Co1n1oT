@@ -21,6 +21,7 @@
  ******************************************************************************/
 char fw_flag[] = "0:fw.txt"; //firmware downloaded flag
 char fw_bin[] = "0:TestA_a10.bin"; //firmware downloaded flag
+//uint8_t whitedata[20];
 /******************************************************************************
  * Variables
  ******************************************************************************/
@@ -569,7 +570,8 @@ BaseType_t CLI_i2cScan(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8
 }
 
 BaseType_t CLI_AlsReadData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString) {
-    // Static variable to check if the sensor is already initialized
+
+   // Static variable to check if the sensor is already initialized
    static bool sensorInitialized = false;
 
     // Check if the sensor is already initialized
@@ -582,20 +584,16 @@ BaseType_t CLI_AlsReadData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const 
         sensorInitialized = true; // Set to true after successful initialization
     }
 
-	//bool success = veml6030_read_res(&als, &w);
-	uint8_t whitedata[20];
-	veml6030_read_register_als_white_cont(0x05,whitedata);
+	//veml6030_read_register_als_white(0x05,whitedata);
 	//uint8_t alsdata[20];
-	//if(ERROR_NONE != veml6030_read_register_als_white(0x05,whitedata))
-	//{
-		//SerialConsoleWriteString("Error reading veml6030!/r/n");
-	//}
-//
-	//uint16_t value = (whitedata[1] << 8) | whitedata[0];
-	//double luxresult = toLux(value); 
-	 //char dec_string[6];
-	//snprintf(pcWriteBuffer, xWriteBufferLen, "Reading sensor data: White status %02X%02X,Combined value in hex: %04X,ActualLuxValue:%u lux\r\n", whitedata[1],whitedata[0],value,value);
+	uint8_t whitedata[20];
+	if(ERROR_NONE != veml6030_read_register_als_white(0x05,whitedata))
+	{
+		SerialConsoleWriteString("Error reading veml6030!/r/n");
+	}
 
-
+	uint16_t value = (whitedata[1] << 8) | whitedata[0];
+	double luxresult = toLux(value);
+	snprintf(pcWriteBuffer, xWriteBufferLen, "Reading sensor data: White status %02X%02X, ActualLuxValue:%u lux\r\n", whitedata[1],whitedata[0],luxresult);
     return pdFALSE; // Return pdFALSE to indicate that the command is complete
 }
