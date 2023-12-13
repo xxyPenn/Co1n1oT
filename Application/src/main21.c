@@ -28,7 +28,7 @@
 #include "driver/include/m2m_wifi.h"
 #include "main.h"
 #include "stdio_serial.h"
-
+#include "Motor/SG90.h"
 /****
  * Defines and Types
  ******************************************************************************/
@@ -74,6 +74,7 @@ int main(void)
     // Initialize trace capabilities
     vTraceEnable(TRC_START);
     // Start FreeRTOS scheduler
+	configure_pwm();
     vTaskStartScheduler();
 
     return 0;  // Will not get here
@@ -155,9 +156,9 @@ static void StartTasks(void)
     snprintf(bufferPrint, 64, "Heap after starting WIFI: %d\r\n", xPortGetFreeHeapSize());
     SerialConsoleWriteString(bufferPrint);
 
-    if (xTaskCreate(vUiHandlerTask, "UI Task", UI_TASK_SIZE, NULL, UI_TASK_PRIORITY, &uiTaskHandle) != pdPASS) {
-        SerialConsoleWriteString("ERR: UI task could not be initialized!\r\n");
-    }
+    //if (xTaskCreate(vUiHandlerTask, "UI Task", UI_TASK_SIZE, NULL, UI_TASK_PRIORITY, &uiTaskHandle) != pdPASS) {
+        //SerialConsoleWriteString("ERR: UI task could not be initialized!\r\n");
+    //}
 
     snprintf(bufferPrint, 64, "Heap after starting UI Task: %d\r\n", xPortGetFreeHeapSize());
     SerialConsoleWriteString(bufferPrint);

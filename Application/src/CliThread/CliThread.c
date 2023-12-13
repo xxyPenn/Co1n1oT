@@ -10,12 +10,12 @@
  * Includes
  ******************************************************************************/
 #include "CliThread.h"
-
+#include "VEML6030/veml6030.h"
 #include "DistanceDriver/DistanceSensor.h"
 #include "IMU\lsm6dso_reg.h"
 #include "SeesawDriver/Seesaw.h"
 #include "WifiHandlerThread/WifiHandler.h"
-
+#include "Motor/SG90.h"
 /******************************************************************************
  * Defines
  ******************************************************************************/
@@ -46,6 +46,16 @@ static const CLI_Command_Definition_t xDistanceSensorGetDistance = {"getdistance
                                                                     "getdistance: Returns the distance from the US-100 Sensor.\r\n",
                                                                     (const pdCOMMAND_LINE_CALLBACK)CLI_DistanceSensorGetDistance,
                                                                     0};
+static const CLI_Command_Definition_t xAlsGetCommand =
+{
+	"als",
+	"als: Returns two values from the ambient light sensor \r\n",
+	CLI_AlsReadData,
+	0
+};
+
+static const CLI_Command_Definition_t xUnlockMotor = {"unlock", "unlock: Motor unlock\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_Unlock, 0};
+static const CLI_Command_Definition_t xLockMotor = {"lock", "lock: Motor unlock\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_Lock, 0};
 
 static const CLI_Command_Definition_t xSendDummyGameData = {"game", "game: Sends dummy game data\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_SendDummyGameData, 0};
 static const CLI_Command_Definition_t xI2cScan = {"i2c", "i2c: Scans I2C bus\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_i2cScan, 0};	
@@ -82,7 +92,9 @@ void vCommandConsoleTask(void *pvParameters)
     FreeRTOS_CLIRegisterCommand(&xDistanceSensorGetDistance);
     FreeRTOS_CLIRegisterCommand(&xSendDummyGameData);
 	FreeRTOS_CLIRegisterCommand(&xI2cScan);
-
+	FreeRTOS_CLIRegisterCommand(&xAlsGetCommand);
+	FreeRTOS_CLIRegisterCommand(&xUnlockMotor);
+	FreeRTOS_CLIRegisterCommand(&xLockMotor);
     char cRxedChar[2];
     unsigned char cInputIndex = 0;
     BaseType_t xMoreDataToFollow;
@@ -322,6 +334,21 @@ BaseType_t CLI_OTAU(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t 
     return pdFALSE;
 }
 
+//Unlock motor
+BaseType_t CLI_Unlock(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString)
+{
+	snprintf((char *) pcWriteBuffer, xWriteBufferLen, "UNLOCKED motor! \r\n");
+	unlock_pwm();
+	return pdFALSE;
+}
+//Lock motor
+BaseType_t CLI_Lock(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString)
+{
+	snprintf((char *) pcWriteBuffer, xWriteBufferLen, "LOCKED motor! \r\n");
+	lock_pwm();
+	return pdFALSE;
+}
+
 // Example CLI Command. Resets system.
 BaseType_t CLI_ResetDevice(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString)
 {
@@ -539,4 +566,36 @@ BaseType_t CLI_i2cScan(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8
             SerialConsoleWriteString( "\r\n");
 			return pdFALSE;
 
+}
+
+BaseType_t CLI_AlsReadData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString) {
+    // Static variable to check if the sensor is already initialized
+   static bool sensorInitialized = false;
+
+    // Check if the sensor is already initialized
+    if (!sensorInitialized) {
+        int32_t initStatus = veml6030_init();
+        if (initStatus != ERROR_NONE) {
+            snprintf(pcWriteBuffer, xWriteBufferLen, "VEML6030 initialization failed with code %d\r\n", (int)initStatus);
+            return pdFALSE;
+        }
+        sensorInitialized = true; // Set to true after successful initialization
+    }
+
+	//bool success = veml6030_read_res(&als, &w);
+	uint8_t whitedata[20];
+	veml6030_read_register_als_white_cont(0x05,whitedata);
+	//uint8_t alsdata[20];
+	//if(ERROR_NONE != veml6030_read_register_als_white(0x05,whitedata))
+	//{
+		//SerialConsoleWriteString("Error reading veml6030!/r/n");
+	//}
+//
+	//uint16_t value = (whitedata[1] << 8) | whitedata[0];
+	//double luxresult = toLux(value); 
+	 //char dec_string[6];
+	//snprintf(pcWriteBuffer, xWriteBufferLen, "Reading sensor data: White status %02X%02X,Combined value in hex: %04X,ActualLuxValue:%u lux\r\n", whitedata[1],whitedata[0],value,value);
+
+
+    return pdFALSE; // Return pdFALSE to indicate that the command is complete
 }

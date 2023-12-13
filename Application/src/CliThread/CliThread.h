@@ -53,3 +53,6 @@ BaseType_t CLI_DistanceSensorGetDistance( int8_t *pcWriteBuffer,size_t xWriteBuf
 BaseType_t CLI_ResetDevice( int8_t *pcWriteBuffer,size_t xWriteBufferLen,const int8_t *pcCommandString );
 BaseType_t CLI_SendDummyGameData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString);
 BaseType_t CLI_i2cScan(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString);
+BaseType_t CLI_AlsReadData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString);
+BaseType_t CLI_Unlock(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString);
+BaseType_t CLI_Lock(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString);

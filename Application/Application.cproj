@@ -550,8 +550,8 @@
         <board id="board.samw25_xplained_pro" value="Add" config="" content-id="Atmel.ASF" />
       </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.samice</avrtool>
-    <avrtoolserialnumber>801048354</avrtoolserialnumber>
+    <avrtool>com.atmel.avrdbg.tool.edbg</avrtool>
+    <avrtoolserialnumber>ATML2449020200008528</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x10010305</avrdeviceexpectedsignature>
     <avrtoolinterface>SWD</avrtoolinterface>
     <com_atmel_avrdbg_tool_edbg>
@@ -583,6 +583,7 @@
           <SwdClock>4000000</SwdClock>
         </InterfaceProperties>
         <InterfaceName>SWD</InterfaceName>
+        <JlinkConfigFile>C:\Users\07yhx\Documents\Atmel Studio\7.0\a11-firmware-drivers-group-co1n1ot\Application\jlink.config</JlinkConfigFile>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.samice</ToolType>
       <ToolNumber>801048354</ToolNumber>
@@ -1308,8 +1309,10 @@
     <Folder Include="src\IMU" />
     <Folder Include="src\DistanceDriver" />
     <Folder Include="src\ControlThread" />
+    <Folder Include="src\Motor\" />
     <Folder Include="src\UiHandlerThread" />
     <Folder Include="src\SeesawDriver" />
+    <Folder Include="src\VEML6030\" />
     <Folder Include="src\WifiHandlerThread" />
     <Folder Include="src\SerialConsole\" />
   </ItemGroup>
@@ -1495,6 +1498,12 @@
     <Compile Include="src\IMU\lsm6dso_reg.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\Motor\SG90.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\Motor\SG90.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\SeesawDriver\Seesaw.h">
       <SubType>compile</SubType>
     </Compile>
@@ -1506,6 +1515,12 @@
       <CustomCompilationSetting Condition="'$(Configuration)' == 'Debug'">-O0</CustomCompilationSetting>
     </Compile>
     <Compile Include="src\UiHandlerThread\UiHandlerThread.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\VEML6030\veml6030.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\VEML6030\veml6030.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\WifiHandlerThread\WifiHandler.c">
