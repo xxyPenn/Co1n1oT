@@ -587,7 +587,7 @@ BaseType_t CLI_AlsReadData(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const 
 	//veml6030_read_register_als_white(0x05,whitedata);
 	//uint8_t alsdata[20];
 	uint8_t whitedata[20];
-	if(ERROR_NONE != veml6030_read_register_als_white(0x05,whitedata))
+	if(ERROR_NONE != veml6030_read_register_als_white_cont(0x05,whitedata))
 	{
 		SerialConsoleWriteString("Error reading veml6030!/r/n");
 	}

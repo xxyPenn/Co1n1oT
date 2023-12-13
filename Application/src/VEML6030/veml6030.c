@@ -68,7 +68,7 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 		AmbientLightData.lenOut = 1;
 		AmbientLightData.msgIn = buffer;
 		AmbientLightData.lenIn = 2;
-		SerialConsoleWriteString(cnt);
+		//SerialConsoleWriteString(cnt);
 		error = I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
 		if (error != ERROR_NONE) {
 			LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
