@@ -1012,7 +1012,7 @@ void vWifiTask(void *pvParameters)
     configure_mqtt();
 
     /* Initialize SD/MMC storage. */
-    init_storage();
+    //init_storage();
 
     /*Initialize BUTTON 0 as an external interrupt*/
     configure_extint_channel();
