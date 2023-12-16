@@ -72,6 +72,10 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 	AmbientLightData.lenIn = 2;
 	bool is_quarter = false;
 	while(1){
+		// Print to debug
+		//I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+		//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+		//delay_ms(100);
 		// Spin on reading the first sensor, if no coin passing then keep reading until a coin passes
 		AmbientLightData.address = VEML6030_I2C_ADDRESS;
 		// Check if there's any sensor read error
@@ -80,7 +84,7 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 			LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
 		}
 		// If a coin passes the first sensor, read the second sensor to check if the coin passes the second sensor
-		if (AmbientLightData.msgIn[1]>>4 == 0){
+		if (AmbientLightData.msgIn[1] != 0xFF){
 			AmbientLightData.address = VEML6030_I2C_ADDRESS_SEC;
 			// read the second sensor several times, if any single time it passes, break and print result
 			for(int idx = 0; idx < 5; idx++){
