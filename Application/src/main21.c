@@ -100,29 +100,29 @@ void vApplicationDaemonTaskStartupHook(void)
 	    SerialConsoleWriteString("Initialized I2C Driver!\r\n");
     }
 
-    if (0 != InitializeSeesaw()) {
-        SerialConsoleWriteString("Error initializing Seesaw!\r\n");
-    } else {
-        SerialConsoleWriteString("Initialized Seesaw!\r\n");
-    }
+    //if (0 != InitializeSeesaw()) {
+        //SerialConsoleWriteString("Error initializing Seesaw!\r\n");
+    //} else {
+        //SerialConsoleWriteString("Initialized Seesaw!\r\n");
+    //}
 
-    uint8_t whoamI = 0;
-    (lsm6dso_device_id_get(GetImuStruct(), &whoamI));
+    //uint8_t whoamI = 0;
+    //(lsm6dso_device_id_get(GetImuStruct(), &whoamI));
+//
+    //if (whoamI != LSM6DSO_ID) {
+        //SerialConsoleWriteString("Cannot find IMU!\r\n");
+    //} else {
+        //SerialConsoleWriteString("IMU found!\r\n");
+        //if (InitImu() == 0) {
+            //SerialConsoleWriteString("IMU initialized!\r\n");
+        //} else {
+            //SerialConsoleWriteString("Could not initialize IMU\r\n");
+        //}
+    //}
 
-    if (whoamI != LSM6DSO_ID) {
-        SerialConsoleWriteString("Cannot find IMU!\r\n");
-    } else {
-        SerialConsoleWriteString("IMU found!\r\n");
-        if (InitImu() == 0) {
-            SerialConsoleWriteString("IMU initialized!\r\n");
-        } else {
-            SerialConsoleWriteString("Could not initialize IMU\r\n");
-        }
-    }
-
-    SerialConsoleWriteString("Initializing distance sensor\r\n");
-    InitializeDistanceSensor();
-    SerialConsoleWriteString("Distance sensor initialized\r\n");
+    //SerialConsoleWriteString("Initializing distance sensor\r\n");
+    //InitializeDistanceSensor();
+    //SerialConsoleWriteString("Distance sensor initialized\r\n");
 
     StartTasks();
 
@@ -150,11 +150,11 @@ static void StartTasks(void)
     snprintf(bufferPrint, 64, "Heap after starting CLI: %d\r\n", xPortGetFreeHeapSize());
     SerialConsoleWriteString(bufferPrint);
 
-    //if (xTaskCreate(vWifiTask, "WIFI_TASK", WIFI_TASK_SIZE, NULL, WIFI_PRIORITY, &wifiTaskHandle) != pdPASS) {
-        //SerialConsoleWriteString("ERR: WIFI task could not be initialized!\r\n");
-    //}
-    //snprintf(bufferPrint, 64, "Heap after starting WIFI: %d\r\n", xPortGetFreeHeapSize());
-    //SerialConsoleWriteString(bufferPrint);
+    if (xTaskCreate(vWifiTask, "WIFI_TASK", WIFI_TASK_SIZE, NULL, WIFI_PRIORITY, &wifiTaskHandle) != pdPASS) {
+        SerialConsoleWriteString("ERR: WIFI task could not be initialized!\r\n");
+    }
+    snprintf(bufferPrint, 64, "Heap after starting WIFI: %d\r\n", xPortGetFreeHeapSize());
+    SerialConsoleWriteString(bufferPrint);
 
     //if (xTaskCreate(vUiHandlerTask, "UI Task", UI_TASK_SIZE, NULL, UI_TASK_PRIORITY, &uiTaskHandle) != pdPASS) {
         //SerialConsoleWriteString("ERR: UI task could not be initialized!\r\n");

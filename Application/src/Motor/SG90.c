@@ -26,7 +26,7 @@ void tcc_pwm_init(Tcc *const tcc_module, const uint32_t channel, const uint32_t 
 	tcc_disable(&MOTOR_PWM_tcc_instance);
 	
 	// Initialize the configuration structure to default values
-	tcc_get_config_defaults(&MOTOR_PWM_tcc,TCC1);
+	tcc_get_config_defaults(&MOTOR_PWM_tcc,TCC0);
 
 	// Set the counter size to 16 bits
 	//MOTOR_PWM_tcc.counter_size = TCC_COUNTER_SIZE_16BIT;
@@ -47,11 +47,11 @@ void tcc_pwm_init(Tcc *const tcc_module, const uint32_t channel, const uint32_t 
 	// Configure duty cycle as a percentage of the period
 	
 	if (lock_state == MOTOR_STATUS_OPEN){
-		MOTOR_PWM_tcc.compare.match[0] = max_count*1.5/20;
+		MOTOR_PWM_tcc.compare.match[1] = max_count*1.5/20;
 		}//unlock
 	
 	if (lock_state == MOTOR_STATUS_CLOSE){
-		MOTOR_PWM_tcc.compare.match[0] = max_count*3/20;
+		MOTOR_PWM_tcc.compare.match[1] = max_count*3/20;
 	}//lock
 	
 	/*
@@ -60,15 +60,15 @@ void tcc_pwm_init(Tcc *const tcc_module, const uint32_t channel, const uint32_t 
 	MOTOR_PWM_tcc.compare.wave_generation = TCC_WAVE_GENERATION_SINGLE_SLOPE_PWM;
 	//MOTOR_PWM_tcc.compare.wave_ramp = TCC_RAMP_RAMP2;
 	
-	MOTOR_PWM_tcc.pins.enable_wave_out_pin[0] = true;
-	MOTOR_PWM_tcc.pins.wave_out_pin[0] = PIN_PA10E_TCC1_WO0;
-	MOTOR_PWM_tcc.pins.wave_out_pin_mux[0] = MUX_PA10E_TCC1_WO0;
+	MOTOR_PWM_tcc.pins.enable_wave_out_pin[1] = true;
+	MOTOR_PWM_tcc.pins.wave_out_pin[1] = PIN_PA05E_TCC0_WO1;
+	MOTOR_PWM_tcc.pins.wave_out_pin_mux[1] = MUX_PA05E_TCC0_WO1;
 	
 	//MOTOR_PWM_tcc.compare.wave_polarity[0] = 1;
 	//MOTOR_PWM_tcc.compare.wave_polarity[1] = 1;
 
 			
-	tcc_init(&MOTOR_PWM_tcc_instance, TCC1, &MOTOR_PWM_tcc);
+	tcc_init(&MOTOR_PWM_tcc_instance, TCC0, &MOTOR_PWM_tcc);
 	// Initialize the TCC module with the specified settings, 0 is tcc0
 
 	// Enable the TCC module
@@ -80,22 +80,23 @@ void tcc_pwm_init(Tcc *const tcc_module, const uint32_t channel, const uint32_t 
 void configure_pwm(void) {
 		// Initialize TCC0 for PWM on Channel 2 with 50Hz frequency and 10% duty cycle
 	
-		SerialConsoleWriteString("Now start to configure pin!\r\n");
+		SerialConsoleWriteString("Now start to configure PWM_Motor pin!\r\n");
 		
-		tcc_pwm_init(TCC1, 0, MOTOR_STATUS_CLOSE);// reset MOTOR_CLOSE
+		tcc_pwm_init(TCC0, 0, MOTOR_STATUS_CLOSE);// reset MOTOR_CLOSE
 
 		SerialConsoleWriteString("PWM pin configure finished!\r\n");
 }
 
 void unlock_pwm(void) {
 	// Initialize TCC0 for PWM on Channel 2 with 50Hz frequency and 10% duty cycle
+		
+	tcc_pwm_init(TCC0, 0, MOTOR_STATUS_OPEN);// unlock state motor
 
-	tcc_pwm_init(TCC1, 0, MOTOR_STATUS_OPEN);// unlock state motor
 }
 void lock_pwm(void) {
 	// Initialize TCC0 for PWM on Channel 2 with 50Hz frequency and 10% duty cycle
 	
-	tcc_pwm_init(TCC1, 0, MOTOR_STATUS_CLOSE);// lock motor
+	tcc_pwm_init(TCC0, 0, MOTOR_STATUS_CLOSE);// lock motor
 }
 
 // Call configure_pwm in your main function or setup routine
