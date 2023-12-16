@@ -74,7 +74,7 @@ int32_t veml6030_init();
 int32_t veml6030_read_white(uint16_t *white_data);
 int32_t veml6030_read_als(uint16_t *als_data);
 //static int32_t veml6030_read_register(uint8_t reg);
-static int32_t veml6030_write_register(uint8_t reg, uint16_t value);
+static int32_t veml6030_write_register(uint8_t reg, uint16_t value, uint8_t addr);
 int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer);
 int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer);
 double toLux(uint16_t total_num);

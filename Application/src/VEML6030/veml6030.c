@@ -14,8 +14,11 @@ const float calibration_factor = 0.0288;
 
 // VEML6030 I2C address
 #define VEML6030_I2C_ADDRESS 0x48//0x48 //0x10
+#define VEML6030_I2C_ADDRESS_SEC 0x10//0x48 //0x10
 #define VEML6030_I2C_WRITE_ADDRESS 0x90//0x90 //0x20
+#define VEML6030_I2C_WRITE_ADDRESS_SEC 0x20//0x90 //0x20
 #define VEML6030_I2C_READ_ADDRESS 0x91//0x91 //0x21
+#define VEML6030_I2C_READ_ADDRESS_SEC 0x21//0x91 //0x21
 #define VEML6030_I2C_READ_COMMAND 0x04
 
 uint8_t msgOutal[64];
@@ -59,33 +62,58 @@ int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer) {
 
 int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 	uint8_t error = 0;
-	uint8_t cnt = 0;
+	
+	// I2C packets waiting to be sent to sensor
+	uint8_t payload[1] = {reg};
+	AmbientLightData.address = VEML6030_I2C_ADDRESS;
+	AmbientLightData.msgOut = payload;
+	AmbientLightData.lenOut = 1;
+	AmbientLightData.msgIn = buffer;
+	AmbientLightData.lenIn = 2;
+	bool is_quarter = false;
 	while(1){
-		cnt++;
-		uint8_t payload[1] = {reg};
+		// Spin on reading the first sensor, if no coin passing then keep reading until a coin passes
 		AmbientLightData.address = VEML6030_I2C_ADDRESS;
-		AmbientLightData.msgOut = payload;
-		AmbientLightData.lenOut = 1;
-		AmbientLightData.msgIn = buffer;
-		AmbientLightData.lenIn = 2;
-		//SerialConsoleWriteString(cnt);
+		// Check if there's any sensor read error
 		error = I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
 		if (error != ERROR_NONE) {
 			LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
 		}
-		uint8_t alsdata[20];
-
-		uint16_t value = (AmbientLightData.msgIn[1] << 8) | AmbientLightData.msgIn[0];
-		double luxresult = toLux(value);
-		char dec_string[6];
+		// If a coin passes the first sensor, read the second sensor to check if the coin passes the second sensor
 		if (AmbientLightData.msgIn[1]>>4 == 0){
-			SerialConsoleWriteString("Coin passing!\r\n");
-			delay_ms(250);
+			AmbientLightData.address = VEML6030_I2C_ADDRESS_SEC;
+			// read the second sensor several times, if any single time it passes, break and print result
+			for(int idx = 0; idx < 5; idx++){
+				I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+				delay_ms(100);
+				// If the second coin passes, print quarter coin passing
+				if (AmbientLightData.msgIn[1]>>4 == 0){
+					is_quarter = true;
+					break;
+				}
+				else{
+					is_quarter = false;
+				}
+			}
+			if (is_quarter) {
+				is_quarter = false;
+				SerialConsoleWriteString("Quarter coin passing!\r\n");
+			} else {
+				SerialConsoleWriteString("Dime coin passing!\r\n");
+			}
+		} else {
+			//continue;
 		}
-		//SerialConsoleWriteString("No coin detected\r\n");
-		//delay_ms(250);
+		//uint8_t alsdata[20];
+//
+		//uint16_t value = (AmbientLightData.msgIn[1] << 8) | AmbientLightData.msgIn[0];
+		//double luxresult = toLux(value);
+		//char dec_string[6];
+		//if (AmbientLightData.msgIn[1]>>4 == 0){
+			//SerialConsoleWriteString("Coin passing!\r\n");
+			//delay_ms(250);
+		//}
 	}
-
 	//*value = (payload[1] << 8) | payload[0]; need to transfer to somewhere else
 	return error;
 }
@@ -124,9 +152,14 @@ int32_t veml6030_init() {
 	// Configure the ALS_CONF register with desired settings
     //Set gain x2, integration time 100 ms, power on
     uint16_t conf_value = (1 << 11) | (0x00 << 6) | (0 << 1) | (0<<16);
-	int32_t status = veml6030_write_register(REG_ALS_CONF, conf_value);
+	int32_t status = veml6030_write_register(REG_ALS_CONF, conf_value, VEML6030_I2C_ADDRESS);
 	if (status != ERROR_NONE) {
-		LogMessage(LOG_ERROR_LVL, "VEML6030 initialization failed: Status code %d", status);
+		LogMessage(LOG_ERROR_LVL, "VEML6030 sensor 1 initialization failed: Status code %d", status);
+		return status;
+	}
+	status = veml6030_write_register(REG_ALS_CONF, conf_value, VEML6030_I2C_ADDRESS_SEC);
+	if (status != ERROR_NONE) {
+		LogMessage(LOG_ERROR_LVL, "VEML6030 sensor 2 initialization failed: Status code %d", status);
 		return status;
 	}
 	LogMessage(LOG_INFO_LVL, "VEML6030 successfully initialized");
@@ -178,9 +211,9 @@ static int32_t veml6030_read_register(uint8_t reg, uint8_t *buffer) {
 }
 
 
-static int32_t veml6030_write_register(uint8_t reg, uint16_t value) {
+static int32_t veml6030_write_register(uint8_t reg, uint16_t value, uint8_t addr) {
 	uint8_t payload[3] = {reg, value & 0xFF, value >> 8};//0xff gives me lower bits and value >> 8gives me higher bit
-	AmbientLightData.address = VEML6030_I2C_ADDRESS;
+	AmbientLightData.address = addr;
 	AmbientLightData.msgOut = payload;
 	AmbientLightData.lenOut = sizeof(payload);
 	AmbientLightData.lenIn = 0;
