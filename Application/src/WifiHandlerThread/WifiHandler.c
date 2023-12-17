@@ -33,6 +33,7 @@ QueueHandle_t xQueueWifiState = NULL;       ///< Queue to determine the Wifi sta
 QueueHandle_t xQueueGameBuffer = NULL;      ///< Queue to send the next play to the cloud
 QueueHandle_t xQueueImuBuffer = NULL;       ///< Queue to send IMU data to the cloud
 QueueHandle_t xQueueDistanceBuffer = NULL;  ///< Queue to send the distance to the cloud
+QueueHandle_t xQueueBalanceBuffer = NULL;   ///< Queue to send the balance to the cloud
 
 /*HTTP DOWNLOAD RELATED DEFINES AND VARIABLES*/
 
@@ -79,6 +80,7 @@ static void MQTT_HandleGameMessages(void);
 static void MQTT_HandleImuMessages(void);
 static void HTTP_DownloadFileInit(void);
 static void HTTP_DownloadFileTransaction(void);
+static void MQTT_HandleBalanceMessages(void)
 /******************************************************************************
  * Callback Functions
  ******************************************************************************/
@@ -938,11 +940,22 @@ static void MQTT_HandleTransactions(void)
     sw_timer_task(&swt_module_inst);
 
     // Check if data has to be sent!
-    MQTT_HandleGameMessages();
-    MQTT_HandleImuMessages();
+    //MQTT_HandleGameMessages();
+    //MQTT_HandleImuMessages();
+	MQTT_HandleBalanceMessages(void)
 
     // Handle MQTT messages
     if (mqtt_inst.isConnected) mqtt_yield(&mqtt_inst, 100);
+}
+
+// Publishes the remaining balance to the vm
+static void MQTT_HandleBalanceMessages(void)
+{
+	struct BalanceDataPacket balance;
+	if (pdPASS == xQueueReceive(xQueueBalanceBuffer, &balance, 0)) {
+		snprintf(mqtt_msg, 63, "{\"Total balance\":%d, \"Increment\": %d}", balance.balance, balance.increment);
+		mqtt_publish(&mqtt_inst, IMU_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
+	}
 }
 
 static void MQTT_HandleImuMessages(void)
@@ -993,11 +1006,13 @@ void vWifiTask(void *pvParameters)
     init_state();
     // Create buffers to send data
     xQueueWifiState = xQueueCreate(5, sizeof(uint32_t));
-    xQueueImuBuffer = xQueueCreate(5, sizeof(struct ImuDataPacket));
-    xQueueGameBuffer = xQueueCreate(2, sizeof(struct GameDataPacket));
-    xQueueDistanceBuffer = xQueueCreate(5, sizeof(uint16_t));
+	xQueueBalanceBuffer = xQueueCreate(1, sizeof(uint32_t));
+    //xQueueImuBuffer = xQueueCreate(5, sizeof(struct ImuDataPacket));
+    //xQueueGameBuffer = xQueueCreate(2, sizeof(struct GameDataPacket));
+    //xQueueDistanceBuffer = xQueueCreate(5, sizeof(uint16_t));
 
-    if (xQueueWifiState == NULL || xQueueImuBuffer == NULL || xQueueGameBuffer == NULL || xQueueDistanceBuffer == NULL) {
+    //if (xQueueWifiState == NULL || xQueueImuBuffer == NULL || xQueueGameBuffer == NULL || xQueueDistanceBuffer == NULL || xQueueBalanceBuffer == NULL) {
+	if (xQueueWifiState == NULL || xQueueBalanceBuffer == NULL) {
         SerialConsoleWriteString("ERROR Initializing Wifi Data queues!\r\n");
     }
 
