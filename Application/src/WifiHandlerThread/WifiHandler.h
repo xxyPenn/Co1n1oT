@@ -101,7 +101,12 @@ struct RgbColorPacket {
 #define MAIN_MQTT_BUFFER_SIZE 512
 
 /* Limitation of user name. */
-#define MAIN_CHAT_USER_NAME_SIZE 64
+#define MAIN_CHAT_USER_NAME_SIZE 
+
+/* Chat MQTT BANK topic. */
+#define BALANCE_TOPIC "balance_ece5160"                  // Sent Account balance
+#define MOTOR_TOPIC "unlock"                  // subscribe unlock
+
 
 /* Chat MQTT topic. */
 #define LED_TOPIC "P1_LED_ESE516_T0"    
