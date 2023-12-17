@@ -5,6 +5,7 @@
 #include "i2cDriver/I2cDriver.h"
 #include "SerialConsole.h"
 #include "math.h"
+#include "WifiHandlerThread/WifiHandler.h"
 
 
 // Raw to lux conversion
@@ -61,8 +62,9 @@ int32_t veml6030_read_register_als_white(uint8_t reg, uint8_t *buffer) {
 }
 
 int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
+	// Initialize variables
 	uint8_t error = 0;
-	
+	struct BalanceDataPacket balance;
 	// I2C packets waiting to be sent to sensor
 	uint8_t payload[1] = {reg};
 	AmbientLightData.address = VEML6030_I2C_ADDRESS;
@@ -71,6 +73,10 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 	AmbientLightData.msgIn = buffer;
 	AmbientLightData.lenIn = 2;
 	bool is_quarter = false;
+	
+	uint16_t balance_num = 0;
+	balance.balance = balance_num;
+	balance.increment = 0;
 	while(1){
 		// Print to debug
 		//I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
@@ -100,9 +106,17 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 				}
 			}
 			if (is_quarter) {
+				balance_num += 25;
 				is_quarter = false;
+				balance.balance = balance_num;
+				balance.increment = 25;
+				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
 				SerialConsoleWriteString("Quarter coin passing!\r\n");
 			} else {
+				balance_num += 10;
+				balance.balance = balance_num;
+				balance.increment = 10;
+				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
 				SerialConsoleWriteString("Dime coin passing!\r\n");
 			}
 		} else {

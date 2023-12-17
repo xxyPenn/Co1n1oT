@@ -34,7 +34,7 @@ QueueHandle_t xQueueWifiState = NULL;       ///< Queue to determine the Wifi sta
 QueueHandle_t xQueueGameBuffer = NULL;      ///< Queue to send the next play to the cloud
 QueueHandle_t xQueueImuBuffer = NULL;       ///< Queue to send IMU data to the cloud
 QueueHandle_t xQueueDistanceBuffer = NULL;  ///< Queue to send the distance to the cloud
-QueueHandle_t xQueueBalanceBuffer = NULL;   ///< Queue to send the balance to the cloud
+
 
 /*HTTP DOWNLOAD RELATED DEFINES AND VARIABLES*/
 
@@ -81,7 +81,7 @@ static void MQTT_HandleGameMessages(void);
 static void MQTT_HandleImuMessages(void);
 static void HTTP_DownloadFileInit(void);
 static void HTTP_DownloadFileTransaction(void);
-static void MQTT_HandleBalanceMessages(void)
+static void MQTT_HandleBalanceMessages(void);
 /******************************************************************************
  * Callback Functions
  ******************************************************************************/
@@ -718,23 +718,23 @@ void SubscribeHandlerDistanceTopic(MessageData *msgData)
     LogMessage(LOG_DEBUG_LVL, "\r\n %.*s", msgData->topicName->lenstring.len, msgData->topicName->lenstring.data);
 }
 
-void SubscribeHandler(MessageData *msgData)
-{
-    /* You received publish message which you had subscribed. */
-    /* Print Topic and message */
-    LogMessage(LOG_DEBUG_LVL, "\r\n %.*s", msgData->topicName->lenstring.len, msgData->topicName->lenstring.data);
-    LogMessage(LOG_DEBUG_LVL, " >> ");
-    LogMessage(LOG_DEBUG_LVL, "%.*s", msgData->message->payloadlen, (char *)msgData->message->payload);
-
-    // Handle LedData message
-    if (strncmp((char *)msgData->topicName->lenstring.data, LED_TOPIC, msgData->message->payloadlen) == 0) {
-        if (strncmp((char *)msgData->message->payload, LED_TOPIC_LED_OFF, msgData->message->payloadlen) == 0) {
-            port_pin_set_output_level(LED_0_PIN, LED_0_INACTIVE);
-        } else if (strncmp((char *)msgData->message->payload, LED_TOPIC_LED_ON, msgData->message->payloadlen) == 0) {
-            port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
-        }
-    }
-}
+//void SubscribeHandler(MessageData *msgData)
+//{
+    ///* You received publish message which you had subscribed. */
+    ///* Print Topic and message */
+    //LogMessage(LOG_DEBUG_LVL, "\r\n %.*s", msgData->topicName->lenstring.len, msgData->topicName->lenstring.data);
+    //LogMessage(LOG_DEBUG_LVL, " >> ");
+    //LogMessage(LOG_DEBUG_LVL, "%.*s", msgData->message->payloadlen, (char *)msgData->message->payload);
+//
+    //// Handle LedData message
+    //if (strncmp((char *)msgData->topicName->lenstring.data, LED_TOPIC, msgData->message->payloadlen) == 0) {
+        //if (strncmp((char *)msgData->message->payload, LED_TOPIC_LED_OFF, msgData->message->payloadlen) == 0) {
+            //port_pin_set_output_level(LED_0_PIN, LED_0_INACTIVE);
+        //} else if (strncmp((char *)msgData->message->payload, LED_TOPIC_LED_ON, msgData->message->payloadlen) == 0) {
+            //port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
+        //}
+    //}
+//}
 
 /**
  * \brief Callback to get the MQTT status update.
@@ -774,11 +774,12 @@ static void mqtt_callback(struct mqtt_module *module_inst, int type, union mqtt_
         case MQTT_CALLBACK_CONNECTED:
             if (data->connected.result == MQTT_CONN_RESULT_ACCEPT) {
                 /* Subscribe chat topic. */
-                mqtt_subscribe(module_inst, GAME_TOPIC_IN, 2, SubscribeHandlerGameTopic);
-                mqtt_subscribe(module_inst, LED_TOPIC, 2, SubscribeHandlerLedTopic);
-                mqtt_subscribe(module_inst, IMU_TOPIC, 2, SubscribeHandlerImuTopic);
+                //mqtt_subscribe(module_inst, GAME_TOPIC_IN, 2, SubscribeHandlerGameTopic);
+                //mqtt_subscribe(module_inst, LED_TOPIC, 2, SubscribeHandlerLedTopic);
+                //mqtt_subscribe(module_inst, IMU_TOPIC, 2, SubscribeHandlerImuTopic);
+				//mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
+				mqtt_subscribe(module_inst, BALANCE_TOPIC, 1, MQTT_HandleBalanceMessages);
 				mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
-				
 				
 				
 				
@@ -970,7 +971,7 @@ static void MQTT_HandleTransactions(void)
     // Check if data has to be sent!
     //MQTT_HandleGameMessages();
     //MQTT_HandleImuMessages();
-	MQTT_HandleBalanceMessages(void)
+	MQTT_HandleBalanceMessages();
 
     // Handle MQTT messages
     if (mqtt_inst.isConnected) mqtt_yield(&mqtt_inst, 100);
@@ -982,43 +983,43 @@ static void MQTT_HandleBalanceMessages(void)
 	struct BalanceDataPacket balance;
 	if (pdPASS == xQueueReceive(xQueueBalanceBuffer, &balance, 0)) {
 		snprintf(mqtt_msg, 63, "{\"Total balance\":%d, \"Increment\": %d}", balance.balance, balance.increment);
-		mqtt_publish(&mqtt_inst, IMU_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
+		mqtt_publish(&mqtt_inst, BALANCE_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
 	}
 }
 
-static void MQTT_HandleImuMessages(void)
-{
-    struct ImuDataPacket imuDataVar;
-    if (pdPASS == xQueueReceive(xQueueImuBuffer, &imuDataVar, 0)) {
-        snprintf(mqtt_msg, 63, "{\"imux\":%d, \"imuy\": %d, \"imuz\": %d}", imuDataVar.xmg, imuDataVar.ymg, imuDataVar.zmg);
-        mqtt_publish(&mqtt_inst, IMU_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
-    }
-}
+//static void MQTT_HandleImuMessages(void)
+//{
+    //struct ImuDataPacket imuDataVar;
+    //if (pdPASS == xQueueReceive(xQueueImuBuffer, &imuDataVar, 0)) {
+        //snprintf(mqtt_msg, 63, "{\"imux\":%d, \"imuy\": %d, \"imuz\": %d}", imuDataVar.xmg, imuDataVar.ymg, imuDataVar.zmg);
+        //mqtt_publish(&mqtt_inst, IMU_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
+    //}
+//}
 
-static void MQTT_HandleGameMessages(void)
-{
-    struct GameDataPacket gamePacket;
-    if (pdPASS == xQueueReceive(xQueueGameBuffer, &gamePacket, 0)) {
-        snprintf(mqtt_msg, 63, "{\"game\":[");
-        for (int iter = 0; iter < GAME_SIZE; iter++) {
-            char numGame[5];
-            if (gamePacket.game[iter] != 0xFF) {
-                snprintf(numGame, 3, "%d", gamePacket.game[iter]);
-                strcat(mqtt_msg, numGame);
-                if (gamePacket.game[iter + 1] != 0xFF && iter + 1 < GAME_SIZE) {
-                    snprintf(numGame, 5, ",");
-                    strcat(mqtt_msg, numGame);
-                }
-            } else {
-                break;
-            }
-        }
-        strcat(mqtt_msg, "]}");
-        LogMessage(LOG_DEBUG_LVL, mqtt_msg);
-        LogMessage(LOG_DEBUG_LVL, "\r\n");
-        mqtt_publish(&mqtt_inst, GAME_TOPIC_OUT, mqtt_msg, strlen(mqtt_msg), 1, 0);
-    }
-}
+//static void MQTT_HandleGameMessages(void)
+//{
+    //struct GameDataPacket gamePacket;
+    //if (pdPASS == xQueueReceive(xQueueGameBuffer, &gamePacket, 0)) {
+        //snprintf(mqtt_msg, 63, "{\"game\":[");
+        //for (int iter = 0; iter < GAME_SIZE; iter++) {
+            //char numGame[5];
+            //if (gamePacket.game[iter] != 0xFF) {
+                //snprintf(numGame, 3, "%d", gamePacket.game[iter]);
+                //strcat(mqtt_msg, numGame);
+                //if (gamePacket.game[iter + 1] != 0xFF && iter + 1 < GAME_SIZE) {
+                    //snprintf(numGame, 5, ",");
+                    //strcat(mqtt_msg, numGame);
+                //}
+            //} else {
+                //break;
+            //}
+        //}
+        //strcat(mqtt_msg, "]}");
+        //LogMessage(LOG_DEBUG_LVL, mqtt_msg);
+        //LogMessage(LOG_DEBUG_LVL, "\r\n");
+        //mqtt_publish(&mqtt_inst, GAME_TOPIC_OUT, mqtt_msg, strlen(mqtt_msg), 1, 0);
+    //}
+//}
 /**
  * \brief Main application function.
  *
@@ -1127,11 +1128,11 @@ void vWifiTask(void *pvParameters)
         }
 
         // Check if we need to publish something. In this example, we publish the "temperature" when the button was pressed.
-        if (isPressed) {
-            mqtt_publish(&mqtt_inst, TEMPERATURE_TOPIC, mqtt_msg_temp, strlen(mqtt_msg_temp), 1, 0);
-            LogMessage(LOG_DEBUG_LVL, "MQTT send %s\r\n", mqtt_msg_temp);
-            isPressed = false;
-        }
+        //if (isPressed) {
+            //mqtt_publish(&mqtt_inst, TEMPERATURE_TOPIC, mqtt_msg_temp, strlen(mqtt_msg_temp), 1, 0);
+            //LogMessage(LOG_DEBUG_LVL, "MQTT send %s\r\n", mqtt_msg_temp);
+            //isPressed = false;
+        //}
 
         vTaskDelay(100);
     }

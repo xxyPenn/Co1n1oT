@@ -104,7 +104,11 @@ struct RgbColorPacket {
 #define MAIN_CHAT_USER_NAME_SIZE 64
 
 /* Chat MQTT topic. */
-#define LED_TOPIC "P1_LED_ESE516_T0"    
+#define BALANCE_TOPIC "balance_ece5160"
+#define MOTOR_TOPIC "unlock"
+
+/* Balance buffer queue*/
+QueueHandle_t xQueueBalanceBuffer;   ///< Queue to send the balance to the cloud
 
 //#define PLAYER1 1  ///< Comment me to compile for player 2. Uncomment me to define for player 1.
 //
@@ -169,6 +173,7 @@ void SubscribeHandlerLedTopic(MessageData *msgData);
 void SubscribeHandlerGameTopic(MessageData *msgData);
 void SubscribeHandlerImuTopic(MessageData *msgData);
 void SubscribeHandlerDistanceTopic(MessageData *msgData);
+void SubscribeHandlerMotorTopic(MessageData *msgData);
 void configure_extint_channel(void);
 void configure_extint_callbacks(void);
 
