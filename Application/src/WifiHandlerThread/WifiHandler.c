@@ -16,6 +16,7 @@
 
 #include "ControlThread/ControlThread.h"
 #include "UiHandlerThread/UiHandlerThread.h"
+#include "Motor/SG90.h"
 
 /******************************************************************************
  * Defines
@@ -682,6 +683,27 @@ void SubscribeHandlerGameTopic(MessageData *msgData)
     }
 }
 
+
+// Co1n1oT Unlock
+void SubscribeHandlerMotorTopic(MessageData *msgData)
+{
+	bool unlock = false;
+	//LogMessage(LOG_DEBUG_LVL, "\r\n %.*s", 10, msgData->message->payload);
+	// Will receive something of the style "rgb(222, 224, 189)"
+	if (strncmp(msgData->message->payload, "false", 5) == 0) {
+		unlock = false;
+	} else {
+		unlock = true;
+	}
+	if (unlock) {
+		LogMessage(LOG_DEBUG_LVL, "Unlocking the bank");
+		unlock_pwm();
+		} else {
+		LogMessage(LOG_DEBUG_LVL, "Locking the bank");
+		lock_pwm();
+	}
+}
+
 void SubscribeHandlerImuTopic(MessageData *msgData)
 {
     LogMessage(LOG_DEBUG_LVL, "\r\nIMU topic received!\r\n");
@@ -753,6 +775,12 @@ static void mqtt_callback(struct mqtt_module *module_inst, int type, union mqtt_
                 mqtt_subscribe(module_inst, GAME_TOPIC_IN, 2, SubscribeHandlerGameTopic);
                 mqtt_subscribe(module_inst, LED_TOPIC, 2, SubscribeHandlerLedTopic);
                 mqtt_subscribe(module_inst, IMU_TOPIC, 2, SubscribeHandlerImuTopic);
+				mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
+				
+				
+				
+				
+				
                 /* Enable USART receiving callback. */
 
                 LogMessage(LOG_DEBUG_LVL, "MQTT Connected\r\n");
