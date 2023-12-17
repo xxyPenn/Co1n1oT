@@ -1310,6 +1310,7 @@
     <Folder Include="src\DistanceDriver" />
     <Folder Include="src\ControlThread" />
     <Folder Include="src\Motor\" />
+    <Folder Include="src\SSD1306\" />
     <Folder Include="src\UiHandlerThread" />
     <Folder Include="src\SeesawDriver" />
     <Folder Include="src\VEML6030\" />
@@ -1508,6 +1509,15 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\SeesawDriver\SeesawDriver.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\SSD1306\fonts.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\SSD1306\SSD1306.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\SSD1306\SSD1306.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\UiHandlerThread\UiHandlerThread.c">

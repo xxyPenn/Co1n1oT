@@ -16,6 +16,7 @@
 #include "SeesawDriver/Seesaw.h"
 #include "WifiHandlerThread/WifiHandler.h"
 #include "Motor/SG90.h"
+#include "SSD1306/SSD1306.h"
 /******************************************************************************
  * Defines
  ******************************************************************************/
@@ -57,7 +58,8 @@ static const CLI_Command_Definition_t xAlsGetCommand =
 
 static const CLI_Command_Definition_t xUnlockMotor = {"unlock", "unlock: Motor unlock\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_Unlock, 0};
 static const CLI_Command_Definition_t xLockMotor = {"lock", "lock: Motor unlock\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_Lock, 0};
-
+static const CLI_Command_Definition_t xOLED = {"OLED", "start-OLED\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_OLED, 0};
+	
 static const CLI_Command_Definition_t xSendDummyGameData = {"game", "game: Sends dummy game data\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_SendDummyGameData, 0};
 static const CLI_Command_Definition_t xI2cScan = {"i2c", "i2c: Scans I2C bus\r\n", (const pdCOMMAND_LINE_CALLBACK)CLI_i2cScan, 0};	
 
@@ -96,6 +98,8 @@ void vCommandConsoleTask(void *pvParameters)
 	FreeRTOS_CLIRegisterCommand(&xAlsGetCommand);
 	FreeRTOS_CLIRegisterCommand(&xUnlockMotor);
 	FreeRTOS_CLIRegisterCommand(&xLockMotor);
+	FreeRTOS_CLIRegisterCommand(&xOLED);
+	
     char cRxedChar[2];
     unsigned char cInputIndex = 0;
     BaseType_t xMoreDataToFollow;
@@ -347,6 +351,106 @@ BaseType_t CLI_Lock(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t 
 {
 	snprintf((char *) pcWriteBuffer, xWriteBufferLen, "LOCKED motor! \r\n");
 	lock_pwm();
+	return pdFALSE;
+}
+
+BaseType_t CLI_OLED(int8_t *pcWriteBuffer, size_t xWriteBufferLen, const int8_t *pcCommandString)
+{
+	
+	//i2c_begin();
+	//i2c_clear();
+	//i2c_setCursor(0, 0);  //line 1 x,y
+	//char _char0[14] = {'W','e','l','c','o','m','e',' ','t','o',' ','t','h','e'};
+	//for(uint8_t a = 0; a < 14; a++)
+	//{
+	//i2c_write_char(_char0[a]);
+	//delay_ms(200);
+	//}
+	//i2c_setCursor(0, 1);  //line 2 x,y
+	//char _char1[13] = {'C','o','1','n','1','o','T',' ','B','a','n','k','!'};
+	//for(uint8_t a = 0; a < 13; a++)
+	//{
+	//i2c_write_char(_char1[a]);
+	//delay_ms(200);
+	//}
+	//
+	//i2c_setCursor(0, 4);  //x,y
+	//char _char4[13] = {'Y','o','u','r',' ','B','a','l','a','n','c','e',':'};
+	//for(uint8_t a = 0; a < 13; a++)
+	//{
+	//i2c_write_char(_char4[a]);
+	//delay_ms(200);
+	//}
+	//
+	//i2c_setCursor(0, 5);  //x,y
+	//uint8_t Balance= 100; // change the money here
+	//i2c_writeDigit(Balance);
+	//i2c_setCursor(0, 6);  //x,y
+	//i2c_print("USD");
+	//vTaskDelay(pdMS_TO_TICKS(1000));
+
+	snprintf((char *) pcWriteBuffer, xWriteBufferLen, "OLED light! \r\n");
+	i2c_begin();
+	i2c_clear();
+	i2c_setCursor(0, 0);  //line 1 x,y
+	char _char0[14] = {'W','e','l','c','o','m','e',' ','t','o',' ','t','h','e'};
+	for(uint8_t a = 0; a < 14; a++)
+	{
+		i2c_write_char(_char0[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 1);  //line 2 x,y
+	char _char1[13] = {'C','o','1','n','1','o','T',' ','B','a','n','k','!'};
+	for(uint8_t a = 0; a < 13; a++)
+	{
+		i2c_write_char(_char1[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 2);  //x,y
+	char _char4[13] = {'Y','o','u','r',' ','B','a','l','a','n','c','e',':'};
+	for(uint8_t a = 0; a < 13; a++)
+	{
+		i2c_write_char(_char4[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 3);  //x,y
+	//i2c test
+	for(uint8_t a = 1; a < 10; a++)
+	{
+		i2c_writeDigit(a);
+	}
+	delay_ms(200);
+	
+	//uart test
+	//	puts("-- PDC_UART Example --\r");
+	
+
+	i2c_setCursor(0, 3);  //x,y
+	i2c_write_char('\n');
+	
+	//static const uint8_t key_down [] = {
+	//0x00, 0x80, 0xE0, 0xF8, 0xFC, 0xFE, 0xFF, 0x3F, 0x1F, 0x0F, 0x0F, 0x1F, 0x3F, 0xFF, 0xFE, 0xFC,
+	//0xF8, 0xF0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	//0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	//0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	//0xF8, 0xFF, 0xFF, 0xFF, 0xFF, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0xFF,
+	//0xFF, 0xFF, 0xFF, 0xFC, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0,
+	//0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0,
+	//0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xF0, 0xE0, 0xE0, 0xC0, 0x00, 0x00, 0x00, 0x00,
+	//0x0F, 0xFF, 0xFF, 0xFF, 0xFF, 0xF0, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xF0, 0xFF,
+	//0xFF, 0xFF, 0xFF, 0x1F, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07,
+	//0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0xFF, 0xFF, 0xFF,
+	//0xFF, 0xFF, 0x07, 0x07, 0x07, 0x07, 0x07, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00,
+	//0x00, 0x00, 0x07, 0x0F, 0x1F, 0x3F, 0x7F, 0x7E, 0xFC, 0xF8, 0xF8, 0xFC, 0x7E, 0x7F, 0x3F, 0x1F,
+	//0x0F, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	//0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x07, 0x07,
+	//0x07, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x0F, 0x0F, 0x0F, 0x07, 0x00, 0x00, 0x00, 0x00
+	//};
+	//
+	//i2c_draw(key_down,32,32,64,32);
+	//
+	////flag for avoiding constant writing to display
+	//uint8_t cleared = 0;
 	return pdFALSE;
 }
 
