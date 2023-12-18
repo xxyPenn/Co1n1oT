@@ -982,7 +982,7 @@ static void MQTT_HandleBalanceMessages(void)
 {
 	struct BalanceDataPacket balance;
 	if (pdPASS == xQueueReceive(xQueueBalanceBuffer, &balance, 0)) {
-		snprintf(mqtt_msg, 63, "{\"Total balance\":%d, \"Increment\": %d}", balance.balance, balance.increment);
+		snprintf(mqtt_msg, 63, "%d", balance.balance);
 		mqtt_publish(&mqtt_inst, BALANCE_TOPIC, mqtt_msg, strlen(mqtt_msg), 1, 0);
 	}
 }

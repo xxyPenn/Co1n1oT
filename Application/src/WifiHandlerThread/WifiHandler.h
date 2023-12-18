@@ -79,7 +79,7 @@ struct ImuDataPacket {
 // Structure definition for displaying balance, unit is cents
 struct BalanceDataPacket {
 	uint16_t balance;
-	uint16_t increment;
+	//uint16_t increment;
 };
 
 // Structure to hold a game packet

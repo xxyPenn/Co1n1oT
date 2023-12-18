@@ -557,7 +557,7 @@
     <com_atmel_avrdbg_tool_edbg>
       <ToolOptions>
         <InterfaceProperties>
-          <SwdClock>0</SwdClock>
+          <SwdClock>2000000</SwdClock>
         </InterfaceProperties>
         <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
@@ -583,7 +583,7 @@
           <SwdClock>4000000</SwdClock>
         </InterfaceProperties>
         <InterfaceName>SWD</InterfaceName>
-        <JlinkConfigFile>C:\Users\07yhx\Documents\Atmel Studio\7.0\a11-firmware-drivers-group-co1n1ot\Application\jlink.config</JlinkConfigFile>
+        <JlinkConfigFile>C:\Users\07yhx\Documents\Atmel Studio\7.0\Co1n1oT\Application\jlink.config</JlinkConfigFile>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.samice</ToolType>
       <ToolNumber>801048354</ToolNumber>
@@ -1453,12 +1453,222 @@
     <Compile Include="src\ASF\sam0\drivers\sercom\i2c\i2c_sam0\i2c_master_interrupt.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-port-r0.09\diskio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-port-r0.09\sam0\fattime_rtc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\diskio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ff.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ff.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ffconf.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\integer.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\option\ccsbcs.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\CliThread\CliThread.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\CliThread\CliThread.h">
       <SubType>compile</SubType>
     </Compile>
+    <None Include="src\ASF\thirdparty\fatfs\ATMEL-disclaimer.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\00index_e.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\00index_j.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\css_e.css">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\css_j.css">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\appnote.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chdir.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chdrive.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chmod.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\close.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dinit.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dioctl.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dread.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dstat.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dwrite.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\eof.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\error.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\fattime.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\fdisk.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\filename.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\forward.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\getcwd.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\getfree.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\gets.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\lseek.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mkdir.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mkfs.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mount.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\open.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\opendir.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\printf.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\putc.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\puts.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\rc.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\read.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\readdir.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\rename.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sdir.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfatfs.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfile.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfileinfo.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\size.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\stat.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sync.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\tell.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\truncate.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\unlink.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\utime.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\write.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f1.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f2.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f3.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f4.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f5.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f6.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\layers.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\layers3.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest2.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest3.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\updates.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\00readme.txt">
+      <SubType>compile</SubType>
+    </None>
     <None Include="src\config\conf_sysfont.h">
       <SubType>compile</SubType>
     </None>
@@ -1980,195 +2190,6 @@
     <None Include="src\ASF\thirdparty\CMSIS\README.txt">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\fatfs\ATMEL-disclaimer.txt">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\00index_e.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\00index_j.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\css_e.css">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\css_j.css">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\appnote.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chdir.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chdrive.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\chmod.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\close.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dinit.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dioctl.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dread.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dstat.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\dwrite.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\eof.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\error.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\fattime.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\fdisk.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\filename.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\forward.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\getcwd.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\getfree.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\gets.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\lseek.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mkdir.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mkfs.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\mount.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\open.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\opendir.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\printf.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\putc.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\puts.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\rc.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\read.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\readdir.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\rename.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sdir.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfatfs.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfile.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sfileinfo.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\size.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\stat.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\sync.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\tell.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\truncate.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\unlink.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\utime.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\en\write.html">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f1.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f2.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f3.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f4.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f5.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\f6.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\layers.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\layers3.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest2.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\img\rwtest3.png">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\doc\updates.txt">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\00readme.txt">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\integer.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam0\drivers\system\interrupt\system_interrupt_samd21\system_interrupt_features.h">
       <SubType>compile</SubType>
     </None>
@@ -2194,9 +2215,6 @@
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam0\drivers\tcc\quick_start_faultx\qs_tcc_faultx.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\diskio.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam0\utils\cmsis\samd21\include\instance\eic.h">
@@ -2538,9 +2556,6 @@
     <None Include="src\ASF\sam0\drivers\tcc\quick_start_faultn\qs_tcc_faultn.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ff.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam0\utils\cmsis\samd21\include\component\dsu.h">
       <SubType>compile</SubType>
     </None>
@@ -2709,9 +2724,6 @@
     <None Include="src\ASF\sam0\utils\cmsis\samd21\include\samd21g15a.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ffconf.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam0\drivers\system\interrupt\system_interrupt.h">
       <SubType>compile</SubType>
     </None>
@@ -2875,18 +2887,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ASF\sam0\utils\syscalls\gcc\syscalls.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-port-r0.09\diskio.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-port-r0.09\sam0\fattime_rtc.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\ff.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="src\ASF\thirdparty\fatfs\fatfs-r0.09\src\option\ccsbcs.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\ASF\thirdparty\pahomqtt\MQTTClient\MQTTClient.c">

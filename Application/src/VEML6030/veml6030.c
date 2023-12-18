@@ -76,7 +76,7 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 	
 	uint16_t balance_num = 0;
 	balance.balance = balance_num;
-	balance.increment = 0;
+	//balance.increment = 0;
 	while(1){
 		// Print to debug
 		//I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
@@ -89,33 +89,40 @@ int32_t veml6030_read_register_als_white_cont(uint8_t reg, uint8_t *buffer) {
 		if (error != ERROR_NONE) {
 			LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
 		}
+		//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+		//delay_ms(100);
 		// If a coin passes the first sensor, read the second sensor to check if the coin passes the second sensor
 		if (AmbientLightData.msgIn[1] != 0xFF){
 			AmbientLightData.address = VEML6030_I2C_ADDRESS_SEC;
 			// read the second sensor several times, if any single time it passes, break and print result
 			for(int idx = 0; idx < 5; idx++){
 				I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
-				delay_ms(100);
+				delay_ms(250);
+				//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
 				// If the second coin passes, print quarter coin passing
-				if (AmbientLightData.msgIn[1]>>4 == 0){
-					is_quarter = true;
-					break;
+				if (AmbientLightData.msgIn[1]>>4 == 0xF){
+					is_quarter = false;
+					//LogMessage(LOG_ERROR_LVL, "Dime: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+					//LogMessage(LOG_ERROR_LVL, "Dime: %02x \r\n", AmbientLightData.msgIn[1]>>4);
 				}
 				else{
-					is_quarter = false;
+					//LogMessage(LOG_ERROR_LVL, "Quarter: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+					//LogMessage(LOG_ERROR_LVL, "Quarter: %02x \r\n", AmbientLightData.msgIn[1]>>4);
+					is_quarter = true;
+					break;
 				}
 			}
 			if (is_quarter) {
 				balance_num += 25;
 				is_quarter = false;
 				balance.balance = balance_num;
-				balance.increment = 25;
+				//balance.increment = 25;
 				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
 				SerialConsoleWriteString("Quarter coin passing!\r\n");
 			} else {
 				balance_num += 10;
 				balance.balance = balance_num;
-				balance.increment = 10;
+				//balance.increment = 10;
 				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
 				SerialConsoleWriteString("Dime coin passing!\r\n");
 			}
