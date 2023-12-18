@@ -29,6 +29,8 @@
 #define REG_ALS_CONF_IT400      (0x02 << 6)
 #define REG_ALS_CONF_IT800      (0x03 << 6)
 
+#define COIN_TASK_SIZE 600
+#define COIN_TASK_PRIORITY (configMAX_PRIORITIES-1)
 
 
 // VEML6030 registers //
@@ -105,3 +107,5 @@ uint16_t veml6030_get_psm();
 uint32_t veml6030_int_en(uint16_t en);
 //uint16_t veml6030_int_clear();
 bool veml6030_read_res(double *resals, double *resw);
+
+void vCoinDetectionTask(void *pvParametersr);

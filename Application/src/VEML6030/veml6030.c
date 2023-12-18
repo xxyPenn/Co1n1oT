@@ -220,11 +220,11 @@ static int32_t veml6030_read_register(uint8_t reg, uint8_t *buffer) {
 	uint8_t error = ERROR_NONE;
 	uint8_t payload[2] = {reg, 0};
 
-		AmbientLightData.address = VEML6030_I2C_ADDRESS;
-		AmbientLightData.msgOut = payload;
-		AmbientLightData.lenOut = 1;
-		AmbientLightData.msgIn = buffer;
-		AmbientLightData.lenIn = sizeof(payload);
+	AmbientLightData.address = VEML6030_I2C_ADDRESS;
+	AmbientLightData.msgOut = payload;
+	AmbientLightData.lenOut = 1;
+	AmbientLightData.msgIn = buffer;
+	AmbientLightData.lenIn = sizeof(payload);
 
 	error = I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
 	if (error != ERROR_NONE) {
@@ -244,4 +244,87 @@ static int32_t veml6030_write_register(uint8_t reg, uint16_t value, uint8_t addr
 	AmbientLightData.lenIn = 0;
 	
 	return I2cWriteDataWait(&AmbientLightData, WAIT_I2C_LINE_MS);
+}
+
+void vCoinDetectionTask(void *pvParametersr) {
+	uint8_t reg = 0x05;
+	uint8_t whitedata[20];
+	// Initialize variables
+	uint8_t error = 0;
+	struct BalanceDataPacket balance;
+	// I2C packets waiting to be sent to sensor
+	uint8_t payload[1] = {reg};
+	AmbientLightData.address = VEML6030_I2C_ADDRESS;
+	AmbientLightData.msgOut = payload;
+	AmbientLightData.lenOut = 1;
+	AmbientLightData.msgIn = whitedata;
+	AmbientLightData.lenIn = 2;
+	bool is_quarter = false;
+	
+	uint16_t balance_num = 0;
+	balance.balance = balance_num;
+	LogMessage(LOG_ERROR_LVL, "Done initializing COIN task in 6030 thread\r\n");
+	//balance.increment = 0;
+	while(1){
+		// Print to debug
+		//I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+		//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+		//delay_ms(100);
+		// Spin on reading the first sensor, if no coin passing then keep reading until a coin passes
+		AmbientLightData.address = VEML6030_I2C_ADDRESS;
+		// Check if there's any sensor read error
+		error = I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+		if (error != ERROR_NONE) {
+			LogMessage(LOG_ERROR_LVL, "Error reading from VEML6030: Status code %d", error);
+		}
+		uint8_t dime_feature = 0;
+		uint8_t dime_feature_first = 0;
+		//else {
+			//LogMessage(LOG_ERROR_LVL, "VEML6030: RDW complete\r\n");
+		//}
+		//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+		//delay_ms(100);
+		// If a coin passes the first sensor, read the second sensor to check if the coin passes the second sensor
+		if (AmbientLightData.msgIn[1] != 0xFF){
+			//LogMessage(LOG_ERROR_LVL, "Coin detected\r\n");
+			AmbientLightData.address = VEML6030_I2C_ADDRESS_SEC;
+			// Read 20 times in total, read the first time to initialize the dime feature; We check if the left most 4 bits to be the same for the dime
+			I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+			// Sould stay the same for 20 iterations for dime
+			dime_feature = AmbientLightData.msgIn[1]>>4;
+			// read the second sensor 19 times, AND the results to check if the left most 4 bits are the same
+			for(int idx = 0; idx < 19; idx++){
+				//LogMessage(LOG_ERROR_LVL, "Iter %d in For loop, 6030 reading: %02x%02x\r\n", idx,AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+				delay_ms(20);
+				I2cReadDataWait(&AmbientLightData, 0, WAIT_I2C_LINE_MS);
+				dime_feature = AmbientLightData.msgIn[1]>>4 | dime_feature;
+				// If any of the results differ from the previous values, break
+				if (AmbientLightData.msgIn[1]>>4 != dime_feature) {
+					is_quarter = true;
+					break;
+				} else {
+					is_quarter = false;
+				}
+				//LogMessage(LOG_ERROR_LVL, "6030 reading: %02x%02x \r\n", AmbientLightData.msgIn[1],AmbientLightData.msgIn[0]);
+				//LogMessage(LOG_ERROR_LVL, "Dime: %02x \r\n", AmbientLightData.msgIn[1]>>4);
+			}
+			if (is_quarter) {
+				balance_num += 25;
+				is_quarter = false;
+				balance.balance = balance_num;
+				//balance.increment = 25;
+				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
+				SerialConsoleWriteString("Quarter coin passing!\r\n");
+			} else {
+				balance_num += 10;
+				balance.balance = balance_num;
+				//balance.increment = 10;
+				int error = xQueueSend(xQueueBalanceBuffer, &balance, (TickType_t)10);
+				SerialConsoleWriteString("Dime coin passing!\r\n");
+			}
+		} else {
+			//continue;
+		}
+
+	}
 }

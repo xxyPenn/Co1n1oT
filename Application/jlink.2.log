@@ -1,502 +1,258 @@
-T6054 12734:773.632   SEGGER J-Link V7.52a Log File
-T6054 12734:773.728   DLL Compiled: Jul 28 2021 11:08:12
-T6054 12734:773.754   Logging started @ 2023-12-18 01:40
-T6054 12734:773.795 - 308914.723ms
-T6054 12734:783.105 JLINK_ExecCommand("Device = ATSAMD21G18A", ...). 
-T6054 12734:783.794   Device "ATSAMD21G18" selected.
-T6054 12734:784.392 - 1.220ms returns 0x00
-T6054 12734:800.447 JLINK_TIF_Select(JLINKARM_TIF_SWD)
-T6054 12734:801.168 - 0.747ms returns 0x00
-T6054 12734:801.214 JLINK_SetSpeed(4000)
-T6054 12734:801.368 - 0.178ms
-T6054 12734:801.411 JLINK_ResetPullsRESET(OFF)
-T6054 12734:801.434 - 0.034ms
-T6054 12734:801.459 JLINK_Connect()
-T6054 12734:801.777   InitTarget() start
-T6054 12734:801.870    J-Link Script File: Executing InitTarget()
-T6054 12734:802.143   InitTarget()
-T6054 12734:804.802   InitTarget() end
-T6054 12734:805.583   Found SW-DP with ID 0x0BC11477
-T6054 12734:807.908   DPIDR: 0x0BC11477
-T6054 12734:807.949   Scanning AP map to find all available APs
-T6054 12734:808.620   AP[1]: Stopped AP scan as end of AP map has been reached
-T6054 12734:808.654   AP[0]: AHB-AP (IDR: 0x04770031)
-T6054 12734:808.678   Iterating through AP map to find AHB-AP to use
-T6054 12734:809.597   AP[0]: Core found
-T6054 12734:809.628   AP[0]: AHB-AP ROM base: 0x41003000
-T6054 12734:810.113   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
-T6054 12734:810.144   Found Cortex-M0 r0p1, Little endian.
-T6054 12734:910.824   -- Max. mem block: 0x00002BA8
-T6054 12734:911.029   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 12734:911.434   CPU_WriteMem(4 bytes @ 0xE000EDF0)
-T6054 12734:911.826   CPU_ReadMem(4 bytes @ 0xE0002000)
-T6054 12734:912.257   FPUnit: 4 code (BP) slots and 0 literal slots
-T6054 12734:912.290   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 12734:912.584   CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 12734:912.978   CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 12734:913.333   CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 12734:913.691   CoreSight components:
-T6054 12734:913.721   ROMTbl[0] @ 41003000
-T6054 12734:913.738   CPU_ReadMem(64 bytes @ 0x41003000)
-T6054 12734:914.448   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
-T6054 12734:914.979   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
-T6054 12734:915.024   ROMTbl[1] @ E00FF000
-T6054 12734:915.055   CPU_ReadMem(64 bytes @ 0xE00FF000)
-T6054 12734:915.748   CPU_ReadMem(32 bytes @ 0xE000EFE0)
-T6054 12734:916.305   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
-T6054 12734:916.351   CPU_ReadMem(32 bytes @ 0xE0001FE0)
-T6054 12734:916.854   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
-T6054 12734:916.893   CPU_ReadMem(32 bytes @ 0xE0002FE0)
-T6054 12734:917.496   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
-T6054 12734:917.525   CPU_ReadMem(32 bytes @ 0x41006FE0)
-T6054 12734:918.085   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
-T6054 12734:918.119 - 116.680ms returns 0x00
-T6054 12734:918.191 JLINK_ExecCommand("ExcludeFlashCacheRange 0x0 - 0x40000", ...). 
-T6054 12734:918.217 - 0.010ms returns 0x00
-T6054 12734:918.275 JLINK_Halt()
-T6054 12734:921.100 - 2.852ms returns 0x00
-T6054 12734:922.775 JLINK_JTAG_GetDeviceID(DeviceIndex = 0)
-T6054 12734:922.793 - 0.023ms returns 0
-T6054 12734:922.808 JLINK_ReadMemU32(0x41002018, 0x1 Items)
-T6054 12734:922.832   CPU_ReadMem(4 bytes @ 0x41002018)
-T6054 12734:923.160   Data:  05 03 01 10
-T6054 12734:923.179 - 0.375ms returns 1 (0x1)
-T74F8 12734:931.414 JLINK_IsHalted()
-T74F8 12734:931.853 - 0.463ms returns TRUE
-T74F8 12734:931.880 JLINK_GetMOEs(...)
-T74F8 12734:931.896   CPU_ReadMem(4 bytes @ 0xE000ED30)
-T74F8 12734:932.286 - 0.416ms returns 0x01
-T74F8 12734:932.310 JLINK_ReadReg(R15 (PC))
-T74F8 12734:932.342 - 0.038ms returns 0x0000A66C
-T6054 12735:070.320 JLINK_BeginDownload(Flags = 0x00000000)
-T6054 12735:070.344 - 0.028ms
-T6054 12735:070.388 JLINK_WriteMem(0x00000000, 0x28B3C Bytes, ...)
-T6054 12735:070.400   Data:  A0 76 00 20 F5 BB 01 00 ED BC 01 00 ED BC 01 00 ...
-T6054 12735:071.188   completely In flash
-T6054 12735:071.662    -- Read from flash cache (166716 bytes @ 0x00000000)
-T6054 12735:071.782 - 1.400ms returns 0x28B3C
-T6054 12735:072.087 JLINK_WriteMem(0x00028B3C, 0x2F8 Bytes, ...)
-T6054 12735:072.123   Data:  00 00 00 00 0C 00 00 00 00 00 00 00 00 00 00 00 ...
-T6054 12735:072.148   completely In flash
-T6054 12735:072.199    -- Read from flash cache (760 bytes @ 0x00028B3C)
-T6054 12735:072.219 - 0.154ms returns 0x2F8
-T74F8 12735:133.835 JLINK_IsHalted()
-T74F8 12735:133.915 - 0.087ms returns TRUE
-T74F8 12735:334.367 JLINK_IsHalted()
-T74F8 12735:334.427 - 0.065ms returns TRUE
-T6054 12735:335.400 JLINK_EndDownload()
-T6054 12735:335.647   CPU_ReadMem(4 bytes @ 0x41006004)
-T6054 12735:336.120   CPU_ReadMem(4 bytes @ 0xE000ED90)
-T6054 12735:336.471    -- --------------------------------------
-T6054 12735:336.498   Flash bank @ 0x00000000: Default: L2 verify disabled because algorithm performs L1 verify
-T6054 12735:336.512    -- Start of determining dirty areas in flash cache
-T6054 12735:336.731    -- End of determining dirty areas
-T6054 12735:336.748    -- Start of preparing flash programming
-T6054 12735:336.791    -- Calculating RAM usage
-T6054 12735:336.824    -- RAM usage = 10020 Bytes
-T6054 12735:336.838    -- Preserving CPU registers
-T6054 12735:336.866    -- Preparing memory
-T6054 12735:336.881    -- Preparing target
-T6054 12735:336.897    -- Preserving target RAM temporarily used for programming
-T6054 12735:389.681    -- Downloading RAMCode
-T6054 12735:405.809    -- Preparing RAMCode
-T6054 12735:411.239    -- Checking target RAM
-T6054 12735:412.960    -- End of preparing flash programming
-T6054 12735:413.137   Looking for J-Link GUI Server exe at: C:\Program Files (x86)\Atmel\Studio\7.0\atbackend\JLinkGUIServer.exe
-T6054 12735:413.246   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
-T6054 12735:716.533   Failed to connect to J-Link GUI Server.
-T6054 12735:736.881    -- CPU speed could not be measured.
-T6054 12735:736.947    -- Start of comparing flash
-T6054 12735:736.980    -- CRC check was estimated as fastest method
-T6054 12735:737.028    -- Comparing range 0x0000 - 0x1FFFF (512 Sectors, 128 KiB), using multi-block CRC calculation
-T6054 12735:829.177    -- CRC does not match for sectors 0-1, 121, 132, 144, 148, 151-152, 154, 156-163, 165-168, 170-171, 173-174, 212, 228, 232, 246-247, 280, 286-287, 290-294, 298, 300, 304-305, 309, 311-312, 318-321, 324-326, 330, 334-335, 337-338, 340-344, 348, 356, 361, 365-366, 387, 418, 420-421, 432, 434-435, 437-438, 441-444, 454, 456, 467, 472, 485-486, 492, 497, 501, 505, 508, 511
-T6054 12735:829.275    -- Comparing range 0x20000 - 0x28EFF (143 Sectors, 35 KiB), using multi-block CRC calculation
-T6054 12735:852.272    -- CRC does not match for sectors 2-3, 8, 17, 24, 37-38, 40, 45, 47-48, 52, 56, 91-142
-T6054 12735:852.349    -- Comparing range 0x0200 - 0x78FF (119 Sectors, 29 KiB), using alternative multi-block CRC calculation
-T6054 12735:875.529    -- All CRCs match
-T6054 12735:875.567    -- Comparing range 0x7A00 - 0x83FF (10 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12735:879.473    -- All CRCs match
-T6054 12735:879.512    -- Comparing range 0x8500 - 0x8FFF (11 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12735:883.453    -- All CRCs match
-T6054 12735:883.505    -- Comparing range 0x9100 - 0x93FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:886.254    -- All CRCs match
-T6054 12735:886.306    -- Comparing range 0x9500 - 0x96FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12735:888.965    -- All CRCs match
-T6054 12735:888.998    -- Comparing range 0x9900 - 0x99FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:890.919    -- All CRCs match
-T6054 12735:890.959    -- Comparing range 0x9B00 - 0x9BFF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:892.912    -- All CRCs match
-T6054 12735:892.962    -- Comparing range 0xA400 - 0xA4FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:894.928    -- All CRCs match
-T6054 12735:894.963    -- Comparing range 0xA900 - 0xA9FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:896.803    -- All CRCs match
-T6054 12735:896.924    -- Comparing range 0xAC00 - 0xACFF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:899.495    -- All CRCs match
-T6054 12735:899.587    -- Comparing range 0xAF00 - 0xD3FF (37 Sectors, 9 KiB), using alternative multi-block CRC calculation
-T6054 12735:908.215    -- All CRCs match
-T6054 12735:908.274    -- Comparing range 0xD500 - 0xE3FF (15 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 12735:913.072    -- All CRCs match
-T6054 12735:913.109    -- Comparing range 0xE500 - 0xE7FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:915.593    -- All CRCs match
-T6054 12735:915.671    -- Comparing range 0xE900 - 0xF5FF (13 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 12735:919.746    -- All CRCs match
-T6054 12735:919.796    -- Comparing range 0xF800 - 0x117FF (32 Sectors, 8 KiB), using alternative multi-block CRC calculation
-T6054 12735:928.917    -- All CRCs match
-T6054 12735:928.996    -- Comparing range 0x11900 - 0x11DFF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 12735:931.658    -- All CRCs match
-T6054 12735:931.712    -- Comparing range 0x12000 - 0x121FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12735:933.905    -- All CRCs match
-T6054 12735:933.941    -- Comparing range 0x12700 - 0x129FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:936.461    -- All CRCs match
-T6054 12735:936.525    -- Comparing range 0x12B00 - 0x12BFF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:938.405    -- All CRCs match
-T6054 12735:938.442    -- Comparing range 0x12D00 - 0x12FFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:941.261    -- All CRCs match
-T6054 12735:941.329    -- Comparing range 0x13200 - 0x134FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:943.752    -- All CRCs match
-T6054 12735:943.853    -- Comparing range 0x13600 - 0x136FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:945.705    -- All CRCs match
-T6054 12735:945.738    -- Comparing range 0x13900 - 0x13DFF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 12735:948.528    -- All CRCs match
-T6054 12735:948.582    -- Comparing range 0x14200 - 0x143FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12735:951.081    -- All CRCs match
-T6054 12735:951.130    -- Comparing range 0x14700 - 0x149FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:953.720    -- All CRCs match
-T6054 12735:953.755    -- Comparing range 0x14B00 - 0x14DFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:956.394    -- All CRCs match
-T6054 12735:956.427    -- Comparing range 0x15000 - 0x150FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:958.631    -- All CRCs match
-T6054 12735:958.672    -- Comparing range 0x15300 - 0x153FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:960.547    -- All CRCs match
-T6054 12735:960.581    -- Comparing range 0x15900 - 0x15BFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:963.383    -- All CRCs match
-T6054 12735:963.416    -- Comparing range 0x15D00 - 0x163FF (7 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 12735:966.250    -- All CRCs match
-T6054 12735:966.283    -- Comparing range 0x16500 - 0x168FF (4 Sectors, 1024 Bytes), using alternative multi-block CRC calculation
-T6054 12735:969.019    -- All CRCs match
-T6054 12735:969.081    -- Comparing range 0x16A00 - 0x16CFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12735:972.055    -- All CRCs match
-T6054 12735:972.116    -- Comparing range 0x16F00 - 0x182FF (20 Sectors, 5 KiB), using alternative multi-block CRC calculation
-T6054 12735:977.941    -- All CRCs match
-T6054 12735:977.978    -- Comparing range 0x18400 - 0x1A1FF (30 Sectors, 7 KiB), using alternative multi-block CRC calculation
-T6054 12735:985.342    -- All CRCs match
-T6054 12735:985.392    -- Comparing range 0x1A300 - 0x1A3FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:988.228    -- All CRCs match
-T6054 12735:988.268    -- Comparing range 0x1A600 - 0x1AFFF (10 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12735:992.127    -- All CRCs match
-T6054 12735:992.166    -- Comparing range 0x1B100 - 0x1B1FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:993.845    -- All CRCs match
-T6054 12735:993.932    -- Comparing range 0x1B400 - 0x1B4FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12735:995.575    -- All CRCs match
-T6054 12735:995.608    -- Comparing range 0x1B700 - 0x1B8FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12735:997.752    -- All CRCs match
-T6054 12735:997.776    -- Comparing range 0x1BD00 - 0x1C5FF (9 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12736:001.075    -- All CRCs match
-T6054 12736:001.157    -- Comparing range 0x1C700 - 0x1C7FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12736:002.952    -- All CRCs match
-T6054 12736:003.030    -- Comparing range 0x1C900 - 0x1D2FF (10 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12736:006.699    -- All CRCs match
-T6054 12736:006.747    -- Comparing range 0x1D400 - 0x1D7FF (4 Sectors, 1024 Bytes), using alternative multi-block CRC calculation
-T6054 12736:009.838    -- All CRCs match
-T6054 12736:009.873    -- Comparing range 0x1D900 - 0x1E4FF (12 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 12736:014.396    -- All CRCs match
-T6054 12736:014.442    -- Comparing range 0x1E700 - 0x1EBFF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 12736:016.882    -- All CRCs match
-T6054 12736:016.996    -- Comparing range 0x1ED00 - 0x1F0FF (4 Sectors, 1024 Bytes), using alternative multi-block CRC calculation
-T6054 12736:019.988    -- All CRCs match
-T6054 12736:020.094    -- Comparing range 0x1F200 - 0x1F4FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12736:022.799    -- All CRCs match
-T6054 12736:022.854    -- Comparing range 0x1F600 - 0x1F8FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12736:025.440    -- All CRCs match
-T6054 12736:025.492    -- Comparing range 0x1FA00 - 0x1FBFF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12736:027.745    -- All CRCs match
-T6054 12736:027.795    -- Comparing range 0x1FD00 - 0x1FEFF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12736:030.094    -- All CRCs match
-T6054 12736:030.124    -- Comparing range 0x20000 - 0x201FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 12736:032.232    -- All CRCs match
-T6054 12736:032.258    -- Comparing range 0x20400 - 0x207FF (4 Sectors, 1024 Bytes), using alternative multi-block CRC calculation
-T6054 12736:034.896    -- All CRCs match
-T6054 12736:034.961    -- Comparing range 0x20900 - 0x210FF (8 Sectors, 2 KiB), using alternative multi-block CRC calculation
-T6054 12736:038.486    -- All CRCs match
-T6054 12736:038.521    -- Comparing range 0x21200 - 0x217FF (6 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 12736:041.489    -- All CRCs match
-T6054 12736:041.525    -- Comparing range 0x21900 - 0x224FF (12 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 12736:045.978    -- All CRCs match
-T6054 12736:046.010    -- Comparing range 0x22700 - 0x227FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12736:047.916    -- All CRCs match
-T6054 12736:047.935    -- Comparing range 0x22900 - 0x22CFF (4 Sectors, 1024 Bytes), using alternative multi-block CRC calculation
-T6054 12736:050.528    -- All CRCs match
-T6054 12736:050.620    -- Comparing range 0x22E00 - 0x22EFF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 12736:054.159    -- All CRCs match
-T6054 12736:054.228    -- Comparing range 0x23100 - 0x233FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12736:056.514    -- All CRCs match
-T6054 12736:056.555    -- Comparing range 0x23500 - 0x237FF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 12736:058.897    -- All CRCs match
-T6054 12736:058.921    -- Comparing range 0x23900 - 0x25AFF (34 Sectors, 8 KiB), using alternative multi-block CRC calculation
-T6054 12736:067.112    -- All CRCs match
-T6054 12736:067.179    -- End of comparing flash
-T6054 12736:067.195    -- Start of erasing sectors
-T6054 12736:067.212    -- Erasing range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
-T6054 12736:069.914    -- Erasing range 0x00007900 - 0x000079FF (  1 Sector, 256 Bytes)
-T6054 12736:071.742    -- Erasing range 0x00008400 - 0x000084FF (  1 Sector, 256 Bytes)
-T6054 12736:073.488    -- Erasing range 0x00009000 - 0x000090FF (  1 Sector, 256 Bytes)
-T6054 12736:075.236    -- Erasing range 0x00009400 - 0x000094FF (  1 Sector, 256 Bytes)
-T6054 12736:076.931    -- Erasing range 0x00009700 - 0x000098FF (  2 Sectors, 512 Bytes)
-T6054 12736:079.903    -- Erasing range 0x00009A00 - 0x00009AFF (  1 Sector, 256 Bytes)
-T6054 12736:082.470    -- Erasing range 0x00009C00 - 0x0000A3FF (  8 Sectors, 2 KB)
-T6054 12736:090.459    -- Erasing range 0x0000A500 - 0x0000A8FF (  4 Sectors, 1024 Bytes)
-T6054 12736:096.018    -- Erasing range 0x0000AA00 - 0x0000ABFF (  2 Sectors, 512 Bytes)
-T6054 12736:098.801    -- Erasing range 0x0000AD00 - 0x0000AEFF (  2 Sectors, 512 Bytes)
-T6054 12736:101.611    -- Erasing range 0x0000D400 - 0x0000D4FF (  1 Sector, 256 Bytes)
-T6054 12736:103.676    -- Erasing range 0x0000E400 - 0x0000E4FF (  1 Sector, 256 Bytes)
-T6054 12736:105.482    -- Erasing range 0x0000E800 - 0x0000E8FF (  1 Sector, 256 Bytes)
-T6054 12736:107.160    -- Erasing range 0x0000F600 - 0x0000F7FF (  2 Sectors, 512 Bytes)
-T6054 12736:109.962    -- Erasing range 0x00011800 - 0x000118FF (  1 Sector, 256 Bytes)
-T6054 12736:111.704    -- Erasing range 0x00011E00 - 0x00011FFF (  2 Sectors, 512 Bytes)
-T6054 12736:114.611    -- Erasing range 0x00012200 - 0x000126FF (  5 Sectors, 1 KB)
-T6054 12736:121.043    -- Erasing range 0x00012A00 - 0x00012AFF (  1 Sector, 256 Bytes)
-T6054 12736:122.873    -- Erasing range 0x00012C00 - 0x00012CFF (  1 Sector, 256 Bytes)
-T6054 12736:124.589    -- Erasing range 0x00013000 - 0x000131FF (  2 Sectors, 512 Bytes)
-T6054 12736:128.693    -- Erasing range 0x00013500 - 0x000135FF (  1 Sector, 256 Bytes)
-T6054 12736:130.315    -- Erasing range 0x00013700 - 0x000138FF (  2 Sectors, 512 Bytes)
-T6054 12736:133.068    -- Erasing range 0x00013E00 - 0x000141FF (  4 Sectors, 1024 Bytes)
-T6054 12736:137.422    -- Erasing range 0x00014400 - 0x000146FF (  3 Sectors, 768 Bytes)
-T6054 12736:141.227    -- Erasing range 0x00014A00 - 0x00014AFF (  1 Sector, 256 Bytes)
-T6054 12736:144.164    -- Erasing range 0x00014E00 - 0x00014FFF (  2 Sectors, 512 Bytes)
-T6054 12736:147.173    -- Erasing range 0x00015100 - 0x000152FF (  2 Sectors, 512 Bytes)
-T6054 12736:150.331    -- Erasing range 0x00015400 - 0x000158FF (  5 Sectors, 1 KB)
-T6054 12736:156.537    -- Erasing range 0x00015C00 - 0x00015CFF (  1 Sector, 256 Bytes)
-T6054 12736:159.106    -- Erasing range 0x00016400 - 0x000164FF (  1 Sector, 256 Bytes)
-T6054 12736:161.149    -- Erasing range 0x00016900 - 0x000169FF (  1 Sector, 256 Bytes)
-T6054 12736:162.746    -- Erasing range 0x00016D00 - 0x00016EFF (  2 Sectors, 512 Bytes)
-T6054 12736:165.520    -- Erasing range 0x00018300 - 0x000183FF (  1 Sector, 256 Bytes)
-T6054 12736:167.444    -- Erasing range 0x0001A200 - 0x0001A2FF (  1 Sector, 256 Bytes)
-T6054 12736:169.167    -- Erasing range 0x0001A400 - 0x0001A5FF (  2 Sectors, 512 Bytes)
-T6054 12736:171.990    -- Erasing range 0x0001B000 - 0x0001B0FF (  1 Sector, 256 Bytes)
-T6054 12736:173.628    -- Erasing range 0x0001B200 - 0x0001B3FF (  2 Sectors, 512 Bytes)
-T6054 12736:176.130    -- Erasing range 0x0001B500 - 0x0001B6FF (  2 Sectors, 512 Bytes)
-T6054 12736:178.965    -- Erasing range 0x0001B900 - 0x0001BCFF (  4 Sectors, 1024 Bytes)
-T6054 12736:183.720    -- Erasing range 0x0001C600 - 0x0001C6FF (  1 Sector, 256 Bytes)
-T6054 12736:185.529    -- Erasing range 0x0001C800 - 0x0001C8FF (  1 Sector, 256 Bytes)
-T6054 12736:187.857    -- Erasing range 0x0001D300 - 0x0001D3FF (  1 Sector, 256 Bytes)
-T6054 12736:189.704    -- Erasing range 0x0001D800 - 0x0001D8FF (  1 Sector, 256 Bytes)
-T6054 12736:191.418    -- Erasing range 0x0001E500 - 0x0001E6FF (  2 Sectors, 512 Bytes)
-T6054 12736:193.887    -- Erasing range 0x0001EC00 - 0x0001ECFF (  1 Sector, 256 Bytes)
-T6054 12736:195.522    -- Erasing range 0x0001F100 - 0x0001F1FF (  1 Sector, 256 Bytes)
-T6054 12736:197.193    -- Erasing range 0x0001F500 - 0x0001F5FF (  1 Sector, 256 Bytes)
-T6054 12736:198.985    -- Erasing range 0x0001F900 - 0x0001F9FF (  1 Sector, 256 Bytes)
-T6054 12736:201.102    -- Erasing range 0x0001FC00 - 0x0001FCFF (  1 Sector, 256 Bytes)
-T6054 12736:202.835    -- Erasing range 0x0001FF00 - 0x0001FFFF (  1 Sector, 256 Bytes)
-T6054 12736:204.595    -- Erasing range 0x00020200 - 0x000203FF (  2 Sectors, 512 Bytes)
-T6054 12736:207.105    -- Erasing range 0x00020800 - 0x000208FF (  1 Sector, 256 Bytes)
-T6054 12736:208.797    -- Erasing range 0x00021100 - 0x000211FF (  1 Sector, 256 Bytes)
-T6054 12736:210.529    -- Erasing range 0x00021800 - 0x000218FF (  1 Sector, 256 Bytes)
-T6054 12736:212.223    -- Erasing range 0x00022500 - 0x000226FF (  2 Sectors, 512 Bytes)
-T6054 12736:215.265    -- Erasing range 0x00022800 - 0x000228FF (  1 Sector, 256 Bytes)
-T6054 12736:217.137    -- Erasing range 0x00022D00 - 0x00022DFF (  1 Sector, 256 Bytes)
-T6054 12736:219.071    -- Erasing range 0x00022F00 - 0x000230FF (  2 Sectors, 512 Bytes)
-T6054 12736:221.839    -- Erasing range 0x00023400 - 0x000234FF (  1 Sector, 256 Bytes)
-T6054 12736:225.484    -- Erasing range 0x00023800 - 0x000238FF (  1 Sector, 256 Bytes)
-T6054 12736:227.221    -- Erasing range 0x00025B00 - 0x00028EFF ( 52 Sectors, 13 KB)
-T6054 12736:278.499    -- End of erasing sectors
-T6054 12736:278.523    -- Start of flash programming
-T6054 12736:278.547    -- Programming range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
-T6054 12736:278.581    -- Programming range 0x00007900 - 0x000079FF (  1 Sector, 256 Bytes)
-T6054 12736:278.610    -- Programming range 0x00008400 - 0x000084FF (  1 Sector, 256 Bytes)
-T6054 12736:284.512    -- Programming range 0x00009000 - 0x000090FF (  1 Sector, 256 Bytes)
-T6054 12736:287.201    -- Programming range 0x00009400 - 0x000094FF (  1 Sector, 256 Bytes)
-T6054 12736:289.822    -- Programming range 0x00009700 - 0x000098FF (  2 Sectors, 512 Bytes)
-T6054 12736:292.571    -- Programming range 0x00009A00 - 0x00009AFF (  1 Sector, 256 Bytes)
-T6054 12736:296.447    -- Programming range 0x00009C00 - 0x0000A3FF (  8 Sectors, 2 KB)
-T6054 12736:299.107    -- Programming range 0x0000A500 - 0x0000A8FF (  4 Sectors, 1024 Bytes)
-T6054 12736:310.660    -- Programming range 0x0000AA00 - 0x0000ABFF (  2 Sectors, 512 Bytes)
-T6054 12736:318.095    -- Programming range 0x0000AD00 - 0x0000AEFF (  2 Sectors, 512 Bytes)
-T6054 12736:322.005    -- Programming range 0x0000D400 - 0x0000D4FF (  1 Sector, 256 Bytes)
-T6054 12736:325.911    -- Programming range 0x0000E400 - 0x0000E4FF (  1 Sector, 256 Bytes)
-T6054 12736:328.503    -- Programming range 0x0000E800 - 0x0000E8FF (  1 Sector, 256 Bytes)
-T6054 12736:331.217    -- Programming range 0x0000F600 - 0x0000F7FF (  2 Sectors, 512 Bytes)
-T6054 12736:333.954    -- Programming range 0x00011800 - 0x000118FF (  1 Sector, 256 Bytes)
-T6054 12736:337.968    -- Programming range 0x00011E00 - 0x00011FFF (  2 Sectors, 512 Bytes)
-T6054 12736:340.713    -- Programming range 0x00012200 - 0x000126FF (  5 Sectors, 1 KB)
-T6054 12736:344.680    -- Programming range 0x00012A00 - 0x00012AFF (  1 Sector, 256 Bytes)
-T6054 12736:352.473    -- Programming range 0x00012C00 - 0x00012CFF (  1 Sector, 256 Bytes)
-T6054 12736:357.104    -- Programming range 0x00013000 - 0x000131FF (  2 Sectors, 512 Bytes)
-T6054 12736:359.879    -- Programming range 0x00013500 - 0x000135FF (  1 Sector, 256 Bytes)
-T6054 12736:363.822    -- Programming range 0x00013700 - 0x000138FF (  2 Sectors, 512 Bytes)
-T6054 12736:367.510    -- Programming range 0x00013E00 - 0x000141FF (  4 Sectors, 1024 Bytes)
-T6054 12736:371.554    -- Programming range 0x00014400 - 0x000146FF (  3 Sectors, 768 Bytes)
-T6054 12736:379.077    -- Programming range 0x00014A00 - 0x00014AFF (  1 Sector, 256 Bytes)
-T6054 12736:384.296    -- Programming range 0x00014E00 - 0x00014FFF (  2 Sectors, 512 Bytes)
-T6054 12736:387.452    -- Programming range 0x00015100 - 0x000152FF (  2 Sectors, 512 Bytes)
-T6054 12736:391.409    -- Programming range 0x00015400 - 0x000158FF (  5 Sectors, 1 KB)
-T6054 12736:396.820    -- Programming range 0x00015C00 - 0x00015CFF (  1 Sector, 256 Bytes)
-T6054 12736:404.604    -- Programming range 0x00016400 - 0x000164FF (  1 Sector, 256 Bytes)
-T6054 12736:411.000    -- Programming range 0x00016900 - 0x000169FF (  1 Sector, 256 Bytes)
-T6054 12736:413.605    -- Programming range 0x00016D00 - 0x00016EFF (  2 Sectors, 512 Bytes)
-T6054 12736:416.289    -- Programming range 0x00018300 - 0x000183FF (  1 Sector, 256 Bytes)
-T6054 12736:420.212    -- Programming range 0x0001A200 - 0x0001A2FF (  1 Sector, 256 Bytes)
-T6054 12736:422.932    -- Programming range 0x0001A400 - 0x0001A5FF (  2 Sectors, 512 Bytes)
-T6054 12736:426.113    -- Programming range 0x0001B000 - 0x0001B0FF (  1 Sector, 256 Bytes)
-T6054 12736:429.963    -- Programming range 0x0001B200 - 0x0001B3FF (  2 Sectors, 512 Bytes)
-T6054 12736:432.632    -- Programming range 0x0001B500 - 0x0001B6FF (  2 Sectors, 512 Bytes)
-T6054 12736:436.643    -- Programming range 0x0001B900 - 0x0001BCFF (  4 Sectors, 1024 Bytes)
-T6054 12736:441.773    -- Programming range 0x0001C600 - 0x0001C6FF (  1 Sector, 256 Bytes)
-T6054 12736:448.250    -- Programming range 0x0001C800 - 0x0001C8FF (  1 Sector, 256 Bytes)
-T6054 12736:451.872    -- Programming range 0x0001D300 - 0x0001D3FF (  1 Sector, 256 Bytes)
-T6054 12736:454.619    -- Programming range 0x0001D800 - 0x0001D8FF (  1 Sector, 256 Bytes)
-T6054 12736:457.748    -- Programming range 0x0001E500 - 0x0001E6FF (  2 Sectors, 512 Bytes)
-T6054 12736:460.422    -- Programming range 0x0001EC00 - 0x0001ECFF (  1 Sector, 256 Bytes)
-T6054 12736:464.379    -- Programming range 0x0001F100 - 0x0001F1FF (  1 Sector, 256 Bytes)
-T6054 12736:467.114    -- Programming range 0x0001F500 - 0x0001F5FF (  1 Sector, 256 Bytes)
-T6054 12736:469.937    -- Programming range 0x0001F900 - 0x0001F9FF (  1 Sector, 256 Bytes)
-T6054 12736:473.870    -- Programming range 0x0001FC00 - 0x0001FCFF (  1 Sector, 256 Bytes)
-T6054 12736:476.692    -- Programming range 0x0001FF00 - 0x0001FFFF (  1 Sector, 256 Bytes)
-T6054 12736:479.360    -- Programming range 0x00020200 - 0x000203FF (  2 Sectors, 512 Bytes)
-T6054 12736:482.081    -- Programming range 0x00020800 - 0x000208FF (  1 Sector, 256 Bytes)
-T6054 12736:486.096    -- Programming range 0x00021100 - 0x000211FF (  1 Sector, 256 Bytes)
-T6054 12736:489.405    -- Programming range 0x00021800 - 0x000218FF (  1 Sector, 256 Bytes)
-T6054 12736:492.232    -- Programming range 0x00022500 - 0x000226FF (  2 Sectors, 512 Bytes)
-T6054 12736:494.997    -- Programming range 0x00022800 - 0x000228FF (  1 Sector, 256 Bytes)
-T6054 12736:498.999    -- Programming range 0x00022D00 - 0x00022DFF (  1 Sector, 256 Bytes)
-T6054 12736:501.609    -- Programming range 0x00022F00 - 0x000230FF (  2 Sectors, 512 Bytes)
-T6054 12736:504.818    -- Programming range 0x00023400 - 0x000234FF (  1 Sector, 256 Bytes)
-T6054 12736:508.938    -- Programming range 0x00023800 - 0x000238FF (  1 Sector, 256 Bytes)
-T6054 12736:511.680    -- Programming range 0x00025B00 - 0x00028EFF ( 52 Sectors, 13 KB)
-T6054 12736:578.650    -- End of flash programming
-T6054 12736:578.681    -- 0x0000 - 0x01FF (  2 Sectors, 512 Bytes)
-T6054 12736:578.696    -- 0x7900 - 0x79FF (  1 Sector, 256 Bytes)
-T6054 12736:578.711    -- 0x8400 - 0x84FF (  1 Sector, 256 Bytes)
-T6054 12736:578.726    -- 0x9000 - 0x90FF (  1 Sector, 256 Bytes)
-T6054 12736:578.740    -- 0x9400 - 0x94FF (  1 Sector, 256 Bytes)
-T6054 12736:578.754    -- 0x9700 - 0x98FF (  2 Sectors, 512 Bytes)
-T6054 12736:578.769    -- 0x9A00 - 0x9AFF (  1 Sector, 256 Bytes)
-T6054 12736:578.783    -- 0x9C00 - 0xA3FF (  8 Sectors, 2 KoB)
-T6054 12736:578.797    -- 0xA500 - 0xA8FF (  4 Sectors, 1024 Bytes)
-T6054 12736:578.812    -- 0xAA00 - 0xABFF (  2 Sectors, 512 Bytes)
-T6054 12736:578.826    -- 0xAD00 - 0xAEFF (  2 Sectors, 512 Bytes)
-T6054 12736:578.840    -- 0xD400 - 0xD4FF (  1 Sector, 256 Bytes)
-T6054 12736:578.854    -- 0xE400 - 0xE4FF (  1 Sector, 256 Bytes)
-T6054 12736:578.871    -- 0xE800 - 0xE8FF (  1 Sector, 256 Bytes)
-T6054 12736:578.885    -- 0xF600 - 0xF7FF (  2 Sectors, 512 Bytes)
-T6054 12736:578.901    -- 0x11800 - 0x118FF (  1 Sector, 256 Bytes)
-T6054 12736:578.916    -- 0x11E00 - 0x11FFF (  2 Sectors, 512 Bytes)
-T6054 12736:578.947    -- 0x12200 - 0x126FF (  5 Sectors, 1 KoB)
-T6054 12736:578.963    -- 0x12A00 - 0x12AFF (  1 Sector, 256 Bytes)
-T6054 12736:578.978    -- 0x12C00 - 0x12CFF (  1 Sector, 256 Bytes)
-T6054 12736:578.994    -- 0x13000 - 0x131FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.010    -- 0x13500 - 0x135FF (  1 Sector, 256 Bytes)
-T6054 12736:579.026    -- 0x13700 - 0x138FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.042    -- 0x13E00 - 0x141FF (  4 Sectors, 1024 Bytes)
-T6054 12736:579.057    -- 0x14400 - 0x146FF (  3 Sectors, 768 Bytes)
-T6054 12736:579.073    -- 0x14A00 - 0x14AFF (  1 Sector, 256 Bytes)
-T6054 12736:579.089    -- 0x14E00 - 0x14FFF (  2 Sectors, 512 Bytes)
-T6054 12736:579.105    -- 0x15100 - 0x152FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.120    -- 0x15400 - 0x158FF (  5 Sectors, 1 KoB)
-T6054 12736:579.136    -- 0x15C00 - 0x15CFF (  1 Sector, 256 Bytes)
-T6054 12736:579.153    -- 0x16400 - 0x164FF (  1 Sector, 256 Bytes)
-T6054 12736:579.169    -- 0x16900 - 0x169FF (  1 Sector, 256 Bytes)
-T6054 12736:579.184    -- 0x16D00 - 0x16EFF (  2 Sectors, 512 Bytes)
-T6054 12736:579.200    -- 0x18300 - 0x183FF (  1 Sector, 256 Bytes)
-T6054 12736:579.216    -- 0x1A200 - 0x1A2FF (  1 Sector, 256 Bytes)
-T6054 12736:579.231    -- 0x1A400 - 0x1A5FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.247    -- 0x1B000 - 0x1B0FF (  1 Sector, 256 Bytes)
-T6054 12736:579.263    -- 0x1B200 - 0x1B3FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.279    -- 0x1B500 - 0x1B6FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.295    -- 0x1B900 - 0x1BCFF (  4 Sectors, 1024 Bytes)
-T6054 12736:579.311    -- 0x1C600 - 0x1C6FF (  1 Sector, 256 Bytes)
-T6054 12736:579.326    -- 0x1C800 - 0x1C8FF (  1 Sector, 256 Bytes)
-T6054 12736:579.342    -- 0x1D300 - 0x1D3FF (  1 Sector, 256 Bytes)
-T6054 12736:579.358    -- 0x1D800 - 0x1D8FF (  1 Sector, 256 Bytes)
-T6054 12736:579.374    -- 0x1E500 - 0x1E6FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.389    -- 0x1EC00 - 0x1ECFF (  1 Sector, 256 Bytes)
-T6054 12736:579.405    -- 0x1F100 - 0x1F1FF (  1 Sector, 256 Bytes)
-T6054 12736:579.421    -- 0x1F500 - 0x1F5FF (  1 Sector, 256 Bytes)
-T6054 12736:579.436    -- 0x1F900 - 0x1F9FF (  1 Sector, 256 Bytes)
-T6054 12736:579.452    -- 0x1FC00 - 0x1FCFF (  1 Sector, 256 Bytes)
-T6054 12736:579.468    -- 0x1FF00 - 0x1FFFF (  1 Sector, 256 Bytes)
-T6054 12736:579.484    -- 0x20200 - 0x203FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.499    -- 0x20800 - 0x208FF (  1 Sector, 256 Bytes)
-T6054 12736:579.515    -- 0x21100 - 0x211FF (  1 Sector, 256 Bytes)
-T6054 12736:579.531    -- 0x21800 - 0x218FF (  1 Sector, 256 Bytes)
-T6054 12736:579.547    -- 0x22500 - 0x226FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.572    -- 0x22800 - 0x228FF (  1 Sector, 256 Bytes)
-T6054 12736:579.587    -- 0x22D00 - 0x22DFF (  1 Sector, 256 Bytes)
-T6054 12736:579.603    -- 0x22F00 - 0x230FF (  2 Sectors, 512 Bytes)
-T6054 12736:579.619    -- 0x23400 - 0x234FF (  1 Sector, 256 Bytes)
-T6054 12736:579.635    -- 0x23800 - 0x238FF (  1 Sector, 256 Bytes)
-T6054 12736:579.650    -- 0x25B00 - 0x28EFF ( 52 Sectors, 13 KoB)
-T6054 12736:579.667    -- Start of restoring
-T6054 12736:579.683    -- Restoring RAMCode
-T6054 12736:600.881    -- Restoring target memory
-T6054 12736:650.203    -- Restore target
-T6054 12736:650.239    -- Restore memory
-T6054 12736:650.257    -- Restoring CPU registers
-T6054 12736:650.291    -- End of restoring
-T6054 12736:650.373    -- Bank 0 @ 0x00000000: 62 ranges affected (40192 bytes)
-T6054 12736:650.409    -- Total: 1.313s (Prepare: 0.400s, Compare: 0.330s, Erase: 0.211s, Program & Verify: 0.318s, Restore: 0.052s)
-T6054 12736:650.440    -- Program & Verify speed: 123 KiB/s
-T6054 12736:654.439 - 1319.058ms returns 40192 (0x9D00)
-T6054 12736:654.581 JLINK_ResetPullsRESET(ON)
-T6054 12736:654.613 - 0.041ms
-T6054 12736:654.655 JLINK_ResetNoHalt()
-T6054 12736:654.946   InitTarget() start
-T6054 12736:655.013    J-Link Script File: Executing InitTarget()
-T6054 12736:655.047   InitTarget()
-T6054 12736:658.183   InitTarget() end
-T6054 12736:658.938   Found SW-DP with ID 0x0BC11477
-T6054 12736:661.230   DPIDR: 0x0BC11477
-T6054 12736:661.367   AP map detection skipped. Manually configured AP map found.
-T6054 12736:661.499   AP[0]: AHB-AP (IDR: Not set)
-T6054 12736:662.443   AP[0]: Core found
-T6054 12736:662.473   AP[0]: AHB-AP ROM base: 0x41003000
-T6054 12736:662.972   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
-T6054 12736:663.022   Found Cortex-M0 r0p1, Little endian.
-T6054 12736:764.315   -- Max. mem block: 0x00002868
-T6054 12736:764.351   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 12736:764.804   CPU_ReadMem(4 bytes @ 0xE0002000)
-T6054 12736:765.262   FPUnit: 4 code (BP) slots and 0 literal slots
-T6054 12736:765.284   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 12736:765.729   CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 12736:766.110   CoreSight components:
-T6054 12736:766.144   ROMTbl[0] @ 41003000
-T6054 12736:766.161   CPU_ReadMem(64 bytes @ 0x41003000)
-T6054 12736:766.908   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
-T6054 12736:767.553   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
-T6054 12736:767.603   ROMTbl[1] @ E00FF000
-T6054 12736:767.632   CPU_ReadMem(64 bytes @ 0xE00FF000)
-T6054 12736:768.444   CPU_ReadMem(32 bytes @ 0xE000EFE0)
-T6054 12736:769.215   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
-T6054 12736:769.292   CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 12736:769.753   CPU_ReadMem(32 bytes @ 0xE0001FE0)
-T6054 12736:770.455   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
-T6054 12736:770.525   CPU_ReadMem(32 bytes @ 0xE0002FE0)
-T6054 12736:771.122   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
-T6054 12736:771.150   CPU_ReadMem(32 bytes @ 0x41006FE0)
-T6054 12736:771.750   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
-T6054 12736:771.817   JLINK_Reset()
-T6054 12736:771.839     CPU_ReadMem(4 bytes @ 0x20000000)
-T6054 12736:772.208     CPU_WriteMem(4 bytes @ 0x20000000)
-T6054 12736:772.742     ResetTarget() start
-T6054 12736:772.785      J-Link Script File: Executing ResetTarget()
-T6054 12736:773.256     CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 12736:773.730     CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 12736:774.192     CPU_WriteMem(4 bytes @ 0xE000ED0C)
-T6054 12736:775.945     CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 12736:776.504     CPU_ReadMem(4 bytes @ 0x41002100)
-T6054 12736:776.881     CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 12736:777.437     ResetTarget() end
-T6054 12736:781.008     CPU_WriteMem(4 bytes @ 0xE0002000)
-T6054 12736:781.519     CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 12736:781.866     CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 12736:782.196     CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 12736:782.623   - 10.832ms
-T6054 12736:782.664   JLINK_Go()
-T6054 12736:782.689     CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 12736:783.162     CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 12736:783.607     CPU_WriteMem(4 bytes @ 0xE0001004)
-T6054 12736:784.564   - 1.960ms
-T6054 12736:784.632 - 129.981ms
-T6054 12736:787.329 JLINK_Close()
-T6054 12736:843.180 - 55.928ms
-T6054 12736:843.280   
-T6054 12736:843.310   Closed
+T6054 22367:250.375   SEGGER J-Link V7.52a Log File
+T6054 22367:250.529   DLL Compiled: Jul 28 2021 11:08:12
+T6054 22367:250.591   Logging started @ 2023-12-18 04:20
+T6054 22367:250.639 - 157177.331ms
+T6054 22367:258.600 JLINK_ExecCommand("Device = ATSAMD21G18A", ...). 
+T6054 22367:259.008   Device "ATSAMD21G18" selected.
+T6054 22367:259.499 - 0.870ms returns 0x00
+T6054 22367:272.763 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T6054 22367:273.754 - 1.015ms returns 0x00
+T6054 22367:273.797 JLINK_SetSpeed(4000)
+T6054 22367:273.951 - 0.173ms
+T6054 22367:274.026 JLINK_ResetPullsRESET(OFF)
+T6054 22367:274.084 - 0.070ms
+T6054 22367:274.111 JLINK_Connect()
+T6054 22367:274.458   InitTarget() start
+T6054 22367:274.552    J-Link Script File: Executing InitTarget()
+T6054 22367:274.837   InitTarget()
+T6054 22367:277.880   InitTarget() end
+T6054 22367:278.770   Found SW-DP with ID 0x0BC11477
+T6054 22367:280.970   DPIDR: 0x0BC11477
+T6054 22367:281.006   Scanning AP map to find all available APs
+T6054 22367:281.643   AP[1]: Stopped AP scan as end of AP map has been reached
+T6054 22367:281.696   AP[0]: AHB-AP (IDR: 0x04770031)
+T6054 22367:281.740   Iterating through AP map to find AHB-AP to use
+T6054 22367:282.620   AP[0]: Core found
+T6054 22367:282.810   AP[0]: AHB-AP ROM base: 0x41003000
+T6054 22367:283.286   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T6054 22367:283.372   Found Cortex-M0 r0p1, Little endian.
+T6054 22367:384.920   -- Max. mem block: 0x00002BA8
+T6054 22367:385.122   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 22367:385.484   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T6054 22367:385.934   CPU_ReadMem(4 bytes @ 0xE0002000)
+T6054 22367:386.415   FPUnit: 4 code (BP) slots and 0 literal slots
+T6054 22367:386.477   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 22367:386.982   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 22367:387.462   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 22367:387.887   CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 22367:388.492   CoreSight components:
+T6054 22367:388.604   ROMTbl[0] @ 41003000
+T6054 22367:388.631   CPU_ReadMem(64 bytes @ 0x41003000)
+T6054 22367:389.444   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
+T6054 22367:390.103   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
+T6054 22367:390.161   ROMTbl[1] @ E00FF000
+T6054 22367:390.194   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T6054 22367:390.969   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T6054 22367:391.585   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
+T6054 22367:391.621   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T6054 22367:392.230   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
+T6054 22367:392.267   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T6054 22367:392.815   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
+T6054 22367:392.837   CPU_ReadMem(32 bytes @ 0x41006FE0)
+T6054 22367:393.494   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
+T6054 22367:393.540 - 119.435ms returns 0x00
+T6054 22367:393.661 JLINK_ExecCommand("ExcludeFlashCacheRange 0x0 - 0x40000", ...). 
+T6054 22367:393.682 - 0.006ms returns 0x00
+T6054 22367:393.770 JLINK_Halt()
+T6054 22367:396.830 - 3.082ms returns 0x00
+T6054 22367:398.423 JLINK_JTAG_GetDeviceID(DeviceIndex = 0)
+T6054 22367:398.449 - 0.033ms returns 0
+T6054 22367:398.471 JLINK_ReadMemU32(0x41002018, 0x1 Items)
+T6054 22367:398.506   CPU_ReadMem(4 bytes @ 0x41002018)
+T6054 22367:398.859   Data:  05 03 01 10
+T6054 22367:398.891 - 0.428ms returns 1 (0x1)
+T7D04 22367:409.375 JLINK_IsHalted()
+T7D04 22367:409.756 - 0.393ms returns TRUE
+T7D04 22367:409.782 JLINK_GetMOEs(...)
+T7D04 22367:409.797   CPU_ReadMem(4 bytes @ 0xE000ED30)
+T7D04 22367:410.130 - 0.359ms returns 0x01
+T7D04 22367:410.153 JLINK_ReadReg(R15 (PC))
+T7D04 22367:410.171 - 0.022ms returns 0x0000B2AC
+T6054 22367:518.986 JLINK_BeginDownload(Flags = 0x00000000)
+T6054 22367:519.017 - 0.054ms
+T6054 22367:519.093 JLINK_WriteMem(0x00000000, 0x24E6C Bytes, ...)
+T6054 22367:519.109   Data:  50 74 00 20 C9 95 01 00 C1 96 01 00 C1 96 01 00 ...
+T6054 22367:519.855   completely In flash
+T6054 22367:520.172    -- Read from flash cache (151148 bytes @ 0x00000000)
+T6054 22367:520.314 - 1.228ms returns 0x24E6C
+T6054 22367:520.625 JLINK_WriteMem(0x00024E6C, 0x2D4 Bytes, ...)
+T6054 22367:520.649   Data:  00 00 00 00 0C 00 00 00 00 00 00 00 00 00 00 00 ...
+T6054 22367:520.716   completely In flash
+T6054 22367:520.741    -- Read from flash cache (724 bytes @ 0x00024E6C)
+T6054 22367:520.764 - 0.147ms returns 0x2D4
+T7D04 22367:610.160 JLINK_IsHalted()
+T7D04 22367:610.205 - 0.050ms returns TRUE
+T6054 22367:611.053 JLINK_EndDownload()
+T6054 22367:611.333   CPU_ReadMem(4 bytes @ 0x41006004)
+T6054 22367:611.748   CPU_ReadMem(4 bytes @ 0xE000ED90)
+T6054 22367:612.145    -- --------------------------------------
+T6054 22367:612.172   Flash bank @ 0x00000000: Default: L2 verify disabled because algorithm performs L1 verify
+T6054 22367:612.189    -- Start of determining dirty areas in flash cache
+T6054 22367:612.305    -- End of determining dirty areas
+T6054 22367:612.323    -- Start of preparing flash programming
+T6054 22367:612.341    -- Calculating RAM usage
+T6054 22367:612.380    -- RAM usage = 10020 Bytes
+T6054 22367:612.398    -- Preserving CPU registers
+T6054 22367:612.437    -- Preparing memory
+T6054 22367:612.454    -- Preparing target
+T6054 22367:612.471    -- Preserving target RAM temporarily used for programming
+T6054 22367:665.412    -- Downloading RAMCode
+T6054 22367:681.889    -- Preparing RAMCode
+T6054 22367:687.868    -- Checking target RAM
+T6054 22367:689.967    -- End of preparing flash programming
+T6054 22367:690.154   Looking for J-Link GUI Server exe at: C:\Program Files (x86)\Atmel\Studio\7.0\atbackend\JLinkGUIServer.exe
+T6054 22367:690.272   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
+T6054 22367:992.101   Failed to connect to J-Link GUI Server.
+T6054 22368:007.515    -- CPU speed could not be measured.
+T6054 22368:007.547    -- Start of comparing flash
+T6054 22368:007.562    -- CRC check was estimated as fastest method
+T6054 22368:007.581    -- Comparing range 0x0000 - 0x1FFFF (512 Sectors, 128 KiB), using multi-block CRC calculation
+T6054 22368:061.387    -- CRC does not match for sectors 0-1, 4, 10-11, 15-19, 32, 34, 40, 44, 50, 64, 66-72, 74-511
+T6054 22368:061.456    -- Comparing range 0x20000 - 0x251FF (82 Sectors, 20 KiB), using multi-block CRC calculation
+T6054 22368:070.708    -- CRC does not match for sectors 0-81
+T6054 22368:070.826    -- Comparing range 0x0200 - 0x03FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
+T6054 22368:073.549    -- All CRCs match
+T6054 22368:073.603    -- Comparing range 0x0500 - 0x09FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
+T6054 22368:076.569    -- All CRCs match
+T6054 22368:076.625    -- Comparing range 0x0C00 - 0x0EFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
+T6054 22368:079.402    -- All CRCs match
+T6054 22368:079.461    -- Comparing range 0x1400 - 0x1FFF (12 Sectors, 3 KiB), using alternative multi-block CRC calculation
+T6054 22368:084.401    -- All CRCs match
+T6054 22368:084.465    -- Comparing range 0x2100 - 0x21FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
+T6054 22368:086.215    -- All CRCs match
+T6054 22368:086.251    -- Comparing range 0x2300 - 0x27FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
+T6054 22368:088.933    -- All CRCs match
+T6054 22368:088.978    -- Comparing range 0x2900 - 0x2BFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
+T6054 22368:091.476    -- All CRCs match
+T6054 22368:091.513    -- Comparing range 0x2D00 - 0x31FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
+T6054 22368:094.277    -- All CRCs match
+T6054 22368:094.335    -- Comparing range 0x3300 - 0x3FFF (13 Sectors, 3 KiB), using alternative multi-block CRC calculation
+T6054 22368:098.489    -- All CRCs match
+T6054 22368:098.602    -- Comparing range 0x4100 - 0x41FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
+T6054 22368:100.347    -- All CRCs match
+T6054 22368:100.482    -- Comparing range 0x4900 - 0x49FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
+T6054 22368:102.195    -- All CRCs match
+T6054 22368:102.231    -- End of comparing flash
+T6054 22368:102.247    -- Start of erasing sectors
+T6054 22368:102.271    -- Erasing range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
+T6054 22368:104.990    -- Erasing range 0x00000400 - 0x000004FF (  1 Sector, 256 Bytes)
+T6054 22368:107.000    -- Erasing range 0x00000A00 - 0x00000BFF (  2 Sectors, 512 Bytes)
+T6054 22368:109.996    -- Erasing range 0x00000F00 - 0x000013FF (  5 Sectors, 1 KB)
+T6054 22368:115.294    -- Erasing range 0x00002000 - 0x000020FF (  1 Sector, 256 Bytes)
+T6054 22368:117.267    -- Erasing range 0x00002200 - 0x000022FF (  1 Sector, 256 Bytes)
+T6054 22368:119.750    -- Erasing range 0x00002800 - 0x000028FF (  1 Sector, 256 Bytes)
+T6054 22368:121.617    -- Erasing range 0x00002C00 - 0x00002CFF (  1 Sector, 256 Bytes)
+T6054 22368:123.709    -- Erasing range 0x00003200 - 0x000032FF (  1 Sector, 256 Bytes)
+T6054 22368:125.726    -- Erasing range 0x00004000 - 0x000040FF (  1 Sector, 256 Bytes)
+T6054 22368:127.727    -- Erasing range 0x00004200 - 0x000048FF (  7 Sectors, 1 KB)
+T6054 22368:135.029    -- Erasing range 0x00004A00 - 0x0000C9FF (128 Sectors, 32 KB)
+T6054 22368:253.836    -- Erasing range 0x0000CA00 - 0x000149FF (128 Sectors, 32 KB)
+T6054 22368:373.558    -- Erasing range 0x00014A00 - 0x0001C9FF (128 Sectors, 32 KB)
+T6054 22368:495.281    -- Erasing range 0x0001CA00 - 0x000249FF (128 Sectors, 32 KB)
+T6054 22368:616.755    -- Erasing range 0x00024A00 - 0x000251FF (  8 Sectors, 2 KB)
+T6054 22368:625.071    -- End of erasing sectors
+T6054 22368:625.095    -- Start of flash programming
+T6054 22368:625.119    -- Programming range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
+T6054 22368:625.151    -- Programming range 0x00000400 - 0x000004FF (  1 Sector, 256 Bytes)
+T6054 22368:625.177    -- Programming range 0x00000A00 - 0x00000BFF (  2 Sectors, 512 Bytes)
+T6054 22368:631.291    -- Programming range 0x00000F00 - 0x000013FF (  5 Sectors, 1 KB)
+T6054 22368:635.269    -- Programming range 0x00002000 - 0x000020FF (  1 Sector, 256 Bytes)
+T6054 22368:643.107    -- Programming range 0x00002200 - 0x000022FF (  1 Sector, 256 Bytes)
+T6054 22368:648.643    -- Programming range 0x00002800 - 0x000028FF (  1 Sector, 256 Bytes)
+T6054 22368:651.427    -- Programming range 0x00002C00 - 0x00002CFF (  1 Sector, 256 Bytes)
+T6054 22368:654.229    -- Programming range 0x00003200 - 0x000032FF (  1 Sector, 256 Bytes)
+T6054 22368:657.032    -- Programming range 0x00004000 - 0x000040FF (  1 Sector, 256 Bytes)
+T6054 22368:659.746    -- Programming range 0x00004200 - 0x000048FF (  7 Sectors, 1 KB)
+T6054 22368:662.448    -- Programming range 0x00004A00 - 0x0000C9FF (128 Sectors, 32 KB)
+T6054 22368:823.520    -- Programming range 0x0000CA00 - 0x000149FF (128 Sectors, 32 KB)
+T6054 22368:994.923    -- Programming range 0x00014A00 - 0x0001C9FF (128 Sectors, 32 KB)
+T6054 22369:166.125    -- Programming range 0x0001CA00 - 0x000249FF (128 Sectors, 32 KB)
+T6054 22369:337.324    -- Programming range 0x00024A00 - 0x000251FF (  8 Sectors, 2 KB)
+T6054 22369:358.736    -- End of flash programming
+T6054 22369:358.767    -- 0x0000 - 0x01FF (  2 Sectors, 512 Bytes)
+T6054 22369:358.782    -- 0x0400 - 0x04FF (  1 Sector, 256 Bytes)
+T6054 22369:358.797    -- 0x0A00 - 0x0BFF (  2 Sectors, 512 Bytes)
+T6054 22369:358.811    -- 0x0F00 - 0x13FF (  5 Sectors, 1 KoB)
+T6054 22369:358.825    -- 0x2000 - 0x20FF (  1 Sector, 256 Bytes)
+T6054 22369:358.839    -- 0x2200 - 0x22FF (  1 Sector, 256 Bytes)
+T6054 22369:358.854    -- 0x2800 - 0x28FF (  1 Sector, 256 Bytes)
+T6054 22369:358.868    -- 0x2C00 - 0x2CFF (  1 Sector, 256 Bytes)
+T6054 22369:358.882    -- 0x3200 - 0x32FF (  1 Sector, 256 Bytes)
+T6054 22369:358.897    -- 0x4000 - 0x40FF (  1 Sector, 256 Bytes)
+T6054 22369:358.911    -- 0x4200 - 0x48FF (  7 Sectors, 1 KoB)
+T6054 22369:358.925    -- 0x4A00 - 0x251FF (520 Sectors, 130 KoB)
+T6054 22369:358.952    -- Start of restoring
+T6054 22369:358.967    -- Restoring RAMCode
+T6054 22369:384.881    -- Restoring target memory
+T6054 22369:434.162    -- Restore target
+T6054 22369:434.205    -- Restore memory
+T6054 22369:434.219    -- Restoring CPU registers
+T6054 22369:434.246    -- End of restoring
+T6054 22369:434.302    -- Bank 0 @ 0x00000000: 12 ranges affected (139008 bytes)
+T6054 22369:434.337    -- Total: 1.821s (Prepare: 0.395s, Compare: 0.094s, Erase: 0.522s, Program & Verify: 0.756s, Restore: 0.052s)
+T6054 22369:434.361    -- Program & Verify speed: 179 KiB/s
+T6054 22369:439.596 - 1828.577ms returns 139008 (0x21F00)
+T6054 22369:439.746 JLINK_ResetPullsRESET(ON)
+T6054 22369:439.764 - 0.022ms
+T6054 22369:439.780 JLINK_ResetNoHalt()
+T6054 22369:440.044   InitTarget() start
+T6054 22369:440.080    J-Link Script File: Executing InitTarget()
+T6054 22369:440.119   InitTarget()
+T6054 22369:442.380   InitTarget() end
+T6054 22369:443.046   Found SW-DP with ID 0x0BC11477
+T6054 22369:445.073   DPIDR: 0x0BC11477
+T6054 22369:445.121   AP map detection skipped. Manually configured AP map found.
+T6054 22369:445.168   AP[0]: AHB-AP (IDR: Not set)
+T6054 22369:446.108   AP[0]: Core found
+T6054 22369:446.152   AP[0]: AHB-AP ROM base: 0x41003000
+T6054 22369:446.634   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T6054 22369:446.680   Found Cortex-M0 r0p1, Little endian.
+T6054 22369:547.650   -- Max. mem block: 0x00002868
+T6054 22369:547.764   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 22369:548.262   CPU_ReadMem(4 bytes @ 0xE0002000)
+T6054 22369:548.827   FPUnit: 4 code (BP) slots and 0 literal slots
+T6054 22369:548.905   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 22369:549.319   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 22369:549.920   CoreSight components:
+T6054 22369:550.022   ROMTbl[0] @ 41003000
+T6054 22369:550.046   CPU_ReadMem(64 bytes @ 0x41003000)
+T6054 22369:550.810   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
+T6054 22369:551.468   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
+T6054 22369:551.505   ROMTbl[1] @ E00FF000
+T6054 22369:551.522   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T6054 22369:552.364   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T6054 22369:553.136   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
+T6054 22369:553.177   CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 22369:553.732   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T6054 22369:554.401   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
+T6054 22369:554.457   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T6054 22369:555.170   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
+T6054 22369:555.218   CPU_ReadMem(32 bytes @ 0x41006FE0)
+T6054 22369:555.852   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
+T6054 22369:555.896   JLINK_Reset()
+T6054 22369:555.912     CPU_ReadMem(4 bytes @ 0x20000000)
+T6054 22369:556.318     CPU_WriteMem(4 bytes @ 0x20000000)
+T6054 22369:556.918     ResetTarget() start
+T6054 22369:556.945      J-Link Script File: Executing ResetTarget()
+T6054 22369:557.371     CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 22369:557.871     CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 22369:558.454     CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T6054 22369:560.818     CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 22369:561.385     CPU_ReadMem(4 bytes @ 0x41002100)
+T6054 22369:561.971     CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 22369:562.614     ResetTarget() end
+T6054 22369:566.423     CPU_WriteMem(4 bytes @ 0xE0002000)
+T6054 22369:567.022     CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 22369:567.707     CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 22369:568.270     CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 22369:568.941   - 13.099ms
+T6054 22369:569.006   JLINK_Go()
+T6054 22369:569.029     CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 22369:569.523     CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 22369:570.146     CPU_WriteMem(4 bytes @ 0xE0001004)
+T6054 22369:571.406   - 2.471ms
+T6054 22369:571.484 - 131.709ms
+T6054 22369:574.703 JLINK_Close()
+T6054 22369:606.434 - 31.791ms
+T6054 22369:606.628   
+T6054 22369:606.652   Closed

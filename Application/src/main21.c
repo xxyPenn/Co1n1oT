@@ -29,6 +29,7 @@
 #include "main.h"
 #include "stdio_serial.h"
 #include "Motor/SG90.h"
+#include "VEML6030/veml6030.h"
 /****
  * Defines and Types
  ******************************************************************************/
@@ -55,6 +56,7 @@ static TaskHandle_t daemonTaskHandle = NULL;   //!< Daemon task handle
 static TaskHandle_t wifiTaskHandle = NULL;     //!< Wifi task handle
 static TaskHandle_t uiTaskHandle = NULL;       //!< UI task handle
 static TaskHandle_t controlTaskHandle = NULL;  //!< Control task handle
+static TaskHandle_t coinTaskHandle = NULL;  //!< Control task handle
 
 char bufferPrint[64];  ///< Buffer for daemon task
 
@@ -100,6 +102,12 @@ void vApplicationDaemonTaskStartupHook(void)
 	    SerialConsoleWriteString("Initialized I2C Driver!\r\n");
     }
 
+    if (ERROR_NONE != veml6030_init()) {
+	    SerialConsoleWriteString("VEML6030 initialization failed");
+	    } else {
+	    SerialConsoleWriteString("Initialized Light Sensor VEML6030!\r\n");
+    }
+
     //if (0 != InitializeSeesaw()) {
         //SerialConsoleWriteString("Error initializing Seesaw!\r\n");
     //} else {
@@ -143,18 +151,25 @@ static void StartTasks(void)
 
     // Initialize Tasks here
 
-    if (xTaskCreate(vCommandConsoleTask, "CLI_TASK", CLI_TASK_SIZE, NULL, CLI_PRIORITY, &cliTaskHandle) != pdPASS) {
-        SerialConsoleWriteString("ERR: CLI task could not be initialized!\r\n");
-    }
-
-    snprintf(bufferPrint, 64, "Heap after starting CLI: %d\r\n", xPortGetFreeHeapSize());
-    SerialConsoleWriteString(bufferPrint);
+    //if (xTaskCreate(vCommandConsoleTask, "CLI_TASK", CLI_TASK_SIZE, NULL, CLI_PRIORITY, &cliTaskHandle) != pdPASS) {
+        //SerialConsoleWriteString("ERR: CLI task could not be initialized!\r\n");
+    //}
+//
+    //snprintf(bufferPrint, 64, "Heap after starting CLI: %d\r\n", xPortGetFreeHeapSize());
+    //SerialConsoleWriteString(bufferPrint);
 
     if (xTaskCreate(vWifiTask, "WIFI_TASK", WIFI_TASK_SIZE, NULL, WIFI_PRIORITY, &wifiTaskHandle) != pdPASS) {
         SerialConsoleWriteString("ERR: WIFI task could not be initialized!\r\n");
     }
     snprintf(bufferPrint, 64, "Heap after starting WIFI: %d\r\n", xPortGetFreeHeapSize());
     SerialConsoleWriteString(bufferPrint);
+	
+	if (xTaskCreate(vCoinDetectionTask, "COIN Task", COIN_TASK_SIZE, NULL, COIN_TASK_PRIORITY, &coinTaskHandle) != pdPASS) {
+		SerialConsoleWriteString("ERR: COIN task could not be initialized!\r\n");
+	}
+	
+	snprintf(bufferPrint, 64, "Heap after starting COIN Task: %d\r\n", xPortGetFreeHeapSize());
+	SerialConsoleWriteString(bufferPrint);
 
     //if (xTaskCreate(vUiHandlerTask, "UI Task", UI_TASK_SIZE, NULL, UI_TASK_PRIORITY, &uiTaskHandle) != pdPASS) {
         //SerialConsoleWriteString("ERR: UI task could not be initialized!\r\n");
