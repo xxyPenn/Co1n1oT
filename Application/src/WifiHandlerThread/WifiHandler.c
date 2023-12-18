@@ -685,6 +685,10 @@ void SubscribeHandlerGameTopic(MessageData *msgData)
     }
 }
 
+// Co1n1oT Display update
+void SubscribeHandlerDisplayTopic(MessageData *msgData) {
+	
+}
 
 // Co1n1oT Unlock
 void SubscribeHandlerMotorTopic(MessageData *msgData)
@@ -780,7 +784,7 @@ static void mqtt_callback(struct mqtt_module *module_inst, int type, union mqtt_
 				//mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
 				mqtt_subscribe(module_inst, BALANCE_TOPIC, 1, MQTT_HandleBalanceMessages);
 				mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
-				
+				mqtt_subscribe(module_inst, DISPLAY_TOPIC, 1, SubscribeHandlerDisplayTopic);
 				
 				
 				

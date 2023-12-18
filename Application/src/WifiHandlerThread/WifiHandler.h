@@ -106,6 +106,7 @@ struct RgbColorPacket {
 /* Chat MQTT topic. */
 #define BALANCE_TOPIC "balance_ece5160"
 #define MOTOR_TOPIC "unlock"
+#define DISPLAY_TOPIC "oled"
 
 /* Balance buffer queue*/
 QueueHandle_t xQueueBalanceBuffer;   ///< Queue to send the balance to the cloud

@@ -1,258 +1,195 @@
-T6054 22367:250.375   SEGGER J-Link V7.52a Log File
-T6054 22367:250.529   DLL Compiled: Jul 28 2021 11:08:12
-T6054 22367:250.591   Logging started @ 2023-12-18 04:20
-T6054 22367:250.639 - 157177.331ms
-T6054 22367:258.600 JLINK_ExecCommand("Device = ATSAMD21G18A", ...). 
-T6054 22367:259.008   Device "ATSAMD21G18" selected.
-T6054 22367:259.499 - 0.870ms returns 0x00
-T6054 22367:272.763 JLINK_TIF_Select(JLINKARM_TIF_SWD)
-T6054 22367:273.754 - 1.015ms returns 0x00
-T6054 22367:273.797 JLINK_SetSpeed(4000)
-T6054 22367:273.951 - 0.173ms
-T6054 22367:274.026 JLINK_ResetPullsRESET(OFF)
-T6054 22367:274.084 - 0.070ms
-T6054 22367:274.111 JLINK_Connect()
-T6054 22367:274.458   InitTarget() start
-T6054 22367:274.552    J-Link Script File: Executing InitTarget()
-T6054 22367:274.837   InitTarget()
-T6054 22367:277.880   InitTarget() end
-T6054 22367:278.770   Found SW-DP with ID 0x0BC11477
-T6054 22367:280.970   DPIDR: 0x0BC11477
-T6054 22367:281.006   Scanning AP map to find all available APs
-T6054 22367:281.643   AP[1]: Stopped AP scan as end of AP map has been reached
-T6054 22367:281.696   AP[0]: AHB-AP (IDR: 0x04770031)
-T6054 22367:281.740   Iterating through AP map to find AHB-AP to use
-T6054 22367:282.620   AP[0]: Core found
-T6054 22367:282.810   AP[0]: AHB-AP ROM base: 0x41003000
-T6054 22367:283.286   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
-T6054 22367:283.372   Found Cortex-M0 r0p1, Little endian.
-T6054 22367:384.920   -- Max. mem block: 0x00002BA8
-T6054 22367:385.122   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 22367:385.484   CPU_WriteMem(4 bytes @ 0xE000EDF0)
-T6054 22367:385.934   CPU_ReadMem(4 bytes @ 0xE0002000)
-T6054 22367:386.415   FPUnit: 4 code (BP) slots and 0 literal slots
-T6054 22367:386.477   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 22367:386.982   CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 22367:387.462   CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 22367:387.887   CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 22367:388.492   CoreSight components:
-T6054 22367:388.604   ROMTbl[0] @ 41003000
-T6054 22367:388.631   CPU_ReadMem(64 bytes @ 0x41003000)
-T6054 22367:389.444   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
-T6054 22367:390.103   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
-T6054 22367:390.161   ROMTbl[1] @ E00FF000
-T6054 22367:390.194   CPU_ReadMem(64 bytes @ 0xE00FF000)
-T6054 22367:390.969   CPU_ReadMem(32 bytes @ 0xE000EFE0)
-T6054 22367:391.585   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
-T6054 22367:391.621   CPU_ReadMem(32 bytes @ 0xE0001FE0)
-T6054 22367:392.230   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
-T6054 22367:392.267   CPU_ReadMem(32 bytes @ 0xE0002FE0)
-T6054 22367:392.815   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
-T6054 22367:392.837   CPU_ReadMem(32 bytes @ 0x41006FE0)
-T6054 22367:393.494   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
-T6054 22367:393.540 - 119.435ms returns 0x00
-T6054 22367:393.661 JLINK_ExecCommand("ExcludeFlashCacheRange 0x0 - 0x40000", ...). 
-T6054 22367:393.682 - 0.006ms returns 0x00
-T6054 22367:393.770 JLINK_Halt()
-T6054 22367:396.830 - 3.082ms returns 0x00
-T6054 22367:398.423 JLINK_JTAG_GetDeviceID(DeviceIndex = 0)
-T6054 22367:398.449 - 0.033ms returns 0
-T6054 22367:398.471 JLINK_ReadMemU32(0x41002018, 0x1 Items)
-T6054 22367:398.506   CPU_ReadMem(4 bytes @ 0x41002018)
-T6054 22367:398.859   Data:  05 03 01 10
-T6054 22367:398.891 - 0.428ms returns 1 (0x1)
-T7D04 22367:409.375 JLINK_IsHalted()
-T7D04 22367:409.756 - 0.393ms returns TRUE
-T7D04 22367:409.782 JLINK_GetMOEs(...)
-T7D04 22367:409.797   CPU_ReadMem(4 bytes @ 0xE000ED30)
-T7D04 22367:410.130 - 0.359ms returns 0x01
-T7D04 22367:410.153 JLINK_ReadReg(R15 (PC))
-T7D04 22367:410.171 - 0.022ms returns 0x0000B2AC
-T6054 22367:518.986 JLINK_BeginDownload(Flags = 0x00000000)
-T6054 22367:519.017 - 0.054ms
-T6054 22367:519.093 JLINK_WriteMem(0x00000000, 0x24E6C Bytes, ...)
-T6054 22367:519.109   Data:  50 74 00 20 C9 95 01 00 C1 96 01 00 C1 96 01 00 ...
-T6054 22367:519.855   completely In flash
-T6054 22367:520.172    -- Read from flash cache (151148 bytes @ 0x00000000)
-T6054 22367:520.314 - 1.228ms returns 0x24E6C
-T6054 22367:520.625 JLINK_WriteMem(0x00024E6C, 0x2D4 Bytes, ...)
-T6054 22367:520.649   Data:  00 00 00 00 0C 00 00 00 00 00 00 00 00 00 00 00 ...
-T6054 22367:520.716   completely In flash
-T6054 22367:520.741    -- Read from flash cache (724 bytes @ 0x00024E6C)
-T6054 22367:520.764 - 0.147ms returns 0x2D4
-T7D04 22367:610.160 JLINK_IsHalted()
-T7D04 22367:610.205 - 0.050ms returns TRUE
-T6054 22367:611.053 JLINK_EndDownload()
-T6054 22367:611.333   CPU_ReadMem(4 bytes @ 0x41006004)
-T6054 22367:611.748   CPU_ReadMem(4 bytes @ 0xE000ED90)
-T6054 22367:612.145    -- --------------------------------------
-T6054 22367:612.172   Flash bank @ 0x00000000: Default: L2 verify disabled because algorithm performs L1 verify
-T6054 22367:612.189    -- Start of determining dirty areas in flash cache
-T6054 22367:612.305    -- End of determining dirty areas
-T6054 22367:612.323    -- Start of preparing flash programming
-T6054 22367:612.341    -- Calculating RAM usage
-T6054 22367:612.380    -- RAM usage = 10020 Bytes
-T6054 22367:612.398    -- Preserving CPU registers
-T6054 22367:612.437    -- Preparing memory
-T6054 22367:612.454    -- Preparing target
-T6054 22367:612.471    -- Preserving target RAM temporarily used for programming
-T6054 22367:665.412    -- Downloading RAMCode
-T6054 22367:681.889    -- Preparing RAMCode
-T6054 22367:687.868    -- Checking target RAM
-T6054 22367:689.967    -- End of preparing flash programming
-T6054 22367:690.154   Looking for J-Link GUI Server exe at: C:\Program Files (x86)\Atmel\Studio\7.0\atbackend\JLinkGUIServer.exe
-T6054 22367:690.272   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
-T6054 22367:992.101   Failed to connect to J-Link GUI Server.
-T6054 22368:007.515    -- CPU speed could not be measured.
-T6054 22368:007.547    -- Start of comparing flash
-T6054 22368:007.562    -- CRC check was estimated as fastest method
-T6054 22368:007.581    -- Comparing range 0x0000 - 0x1FFFF (512 Sectors, 128 KiB), using multi-block CRC calculation
-T6054 22368:061.387    -- CRC does not match for sectors 0-1, 4, 10-11, 15-19, 32, 34, 40, 44, 50, 64, 66-72, 74-511
-T6054 22368:061.456    -- Comparing range 0x20000 - 0x251FF (82 Sectors, 20 KiB), using multi-block CRC calculation
-T6054 22368:070.708    -- CRC does not match for sectors 0-81
-T6054 22368:070.826    -- Comparing range 0x0200 - 0x03FF (2 Sectors, 512 Bytes), using alternative multi-block CRC calculation
-T6054 22368:073.549    -- All CRCs match
-T6054 22368:073.603    -- Comparing range 0x0500 - 0x09FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 22368:076.569    -- All CRCs match
-T6054 22368:076.625    -- Comparing range 0x0C00 - 0x0EFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 22368:079.402    -- All CRCs match
-T6054 22368:079.461    -- Comparing range 0x1400 - 0x1FFF (12 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 22368:084.401    -- All CRCs match
-T6054 22368:084.465    -- Comparing range 0x2100 - 0x21FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 22368:086.215    -- All CRCs match
-T6054 22368:086.251    -- Comparing range 0x2300 - 0x27FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 22368:088.933    -- All CRCs match
-T6054 22368:088.978    -- Comparing range 0x2900 - 0x2BFF (3 Sectors, 768 Bytes), using alternative multi-block CRC calculation
-T6054 22368:091.476    -- All CRCs match
-T6054 22368:091.513    -- Comparing range 0x2D00 - 0x31FF (5 Sectors, 1 KiB), using alternative multi-block CRC calculation
-T6054 22368:094.277    -- All CRCs match
-T6054 22368:094.335    -- Comparing range 0x3300 - 0x3FFF (13 Sectors, 3 KiB), using alternative multi-block CRC calculation
-T6054 22368:098.489    -- All CRCs match
-T6054 22368:098.602    -- Comparing range 0x4100 - 0x41FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 22368:100.347    -- All CRCs match
-T6054 22368:100.482    -- Comparing range 0x4900 - 0x49FF (1 Sector, 256 Bytes), using alternative multi-block CRC calculation
-T6054 22368:102.195    -- All CRCs match
-T6054 22368:102.231    -- End of comparing flash
-T6054 22368:102.247    -- Start of erasing sectors
-T6054 22368:102.271    -- Erasing range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
-T6054 22368:104.990    -- Erasing range 0x00000400 - 0x000004FF (  1 Sector, 256 Bytes)
-T6054 22368:107.000    -- Erasing range 0x00000A00 - 0x00000BFF (  2 Sectors, 512 Bytes)
-T6054 22368:109.996    -- Erasing range 0x00000F00 - 0x000013FF (  5 Sectors, 1 KB)
-T6054 22368:115.294    -- Erasing range 0x00002000 - 0x000020FF (  1 Sector, 256 Bytes)
-T6054 22368:117.267    -- Erasing range 0x00002200 - 0x000022FF (  1 Sector, 256 Bytes)
-T6054 22368:119.750    -- Erasing range 0x00002800 - 0x000028FF (  1 Sector, 256 Bytes)
-T6054 22368:121.617    -- Erasing range 0x00002C00 - 0x00002CFF (  1 Sector, 256 Bytes)
-T6054 22368:123.709    -- Erasing range 0x00003200 - 0x000032FF (  1 Sector, 256 Bytes)
-T6054 22368:125.726    -- Erasing range 0x00004000 - 0x000040FF (  1 Sector, 256 Bytes)
-T6054 22368:127.727    -- Erasing range 0x00004200 - 0x000048FF (  7 Sectors, 1 KB)
-T6054 22368:135.029    -- Erasing range 0x00004A00 - 0x0000C9FF (128 Sectors, 32 KB)
-T6054 22368:253.836    -- Erasing range 0x0000CA00 - 0x000149FF (128 Sectors, 32 KB)
-T6054 22368:373.558    -- Erasing range 0x00014A00 - 0x0001C9FF (128 Sectors, 32 KB)
-T6054 22368:495.281    -- Erasing range 0x0001CA00 - 0x000249FF (128 Sectors, 32 KB)
-T6054 22368:616.755    -- Erasing range 0x00024A00 - 0x000251FF (  8 Sectors, 2 KB)
-T6054 22368:625.071    -- End of erasing sectors
-T6054 22368:625.095    -- Start of flash programming
-T6054 22368:625.119    -- Programming range 0x00000000 - 0x000001FF (  2 Sectors, 512 Bytes)
-T6054 22368:625.151    -- Programming range 0x00000400 - 0x000004FF (  1 Sector, 256 Bytes)
-T6054 22368:625.177    -- Programming range 0x00000A00 - 0x00000BFF (  2 Sectors, 512 Bytes)
-T6054 22368:631.291    -- Programming range 0x00000F00 - 0x000013FF (  5 Sectors, 1 KB)
-T6054 22368:635.269    -- Programming range 0x00002000 - 0x000020FF (  1 Sector, 256 Bytes)
-T6054 22368:643.107    -- Programming range 0x00002200 - 0x000022FF (  1 Sector, 256 Bytes)
-T6054 22368:648.643    -- Programming range 0x00002800 - 0x000028FF (  1 Sector, 256 Bytes)
-T6054 22368:651.427    -- Programming range 0x00002C00 - 0x00002CFF (  1 Sector, 256 Bytes)
-T6054 22368:654.229    -- Programming range 0x00003200 - 0x000032FF (  1 Sector, 256 Bytes)
-T6054 22368:657.032    -- Programming range 0x00004000 - 0x000040FF (  1 Sector, 256 Bytes)
-T6054 22368:659.746    -- Programming range 0x00004200 - 0x000048FF (  7 Sectors, 1 KB)
-T6054 22368:662.448    -- Programming range 0x00004A00 - 0x0000C9FF (128 Sectors, 32 KB)
-T6054 22368:823.520    -- Programming range 0x0000CA00 - 0x000149FF (128 Sectors, 32 KB)
-T6054 22368:994.923    -- Programming range 0x00014A00 - 0x0001C9FF (128 Sectors, 32 KB)
-T6054 22369:166.125    -- Programming range 0x0001CA00 - 0x000249FF (128 Sectors, 32 KB)
-T6054 22369:337.324    -- Programming range 0x00024A00 - 0x000251FF (  8 Sectors, 2 KB)
-T6054 22369:358.736    -- End of flash programming
-T6054 22369:358.767    -- 0x0000 - 0x01FF (  2 Sectors, 512 Bytes)
-T6054 22369:358.782    -- 0x0400 - 0x04FF (  1 Sector, 256 Bytes)
-T6054 22369:358.797    -- 0x0A00 - 0x0BFF (  2 Sectors, 512 Bytes)
-T6054 22369:358.811    -- 0x0F00 - 0x13FF (  5 Sectors, 1 KoB)
-T6054 22369:358.825    -- 0x2000 - 0x20FF (  1 Sector, 256 Bytes)
-T6054 22369:358.839    -- 0x2200 - 0x22FF (  1 Sector, 256 Bytes)
-T6054 22369:358.854    -- 0x2800 - 0x28FF (  1 Sector, 256 Bytes)
-T6054 22369:358.868    -- 0x2C00 - 0x2CFF (  1 Sector, 256 Bytes)
-T6054 22369:358.882    -- 0x3200 - 0x32FF (  1 Sector, 256 Bytes)
-T6054 22369:358.897    -- 0x4000 - 0x40FF (  1 Sector, 256 Bytes)
-T6054 22369:358.911    -- 0x4200 - 0x48FF (  7 Sectors, 1 KoB)
-T6054 22369:358.925    -- 0x4A00 - 0x251FF (520 Sectors, 130 KoB)
-T6054 22369:358.952    -- Start of restoring
-T6054 22369:358.967    -- Restoring RAMCode
-T6054 22369:384.881    -- Restoring target memory
-T6054 22369:434.162    -- Restore target
-T6054 22369:434.205    -- Restore memory
-T6054 22369:434.219    -- Restoring CPU registers
-T6054 22369:434.246    -- End of restoring
-T6054 22369:434.302    -- Bank 0 @ 0x00000000: 12 ranges affected (139008 bytes)
-T6054 22369:434.337    -- Total: 1.821s (Prepare: 0.395s, Compare: 0.094s, Erase: 0.522s, Program & Verify: 0.756s, Restore: 0.052s)
-T6054 22369:434.361    -- Program & Verify speed: 179 KiB/s
-T6054 22369:439.596 - 1828.577ms returns 139008 (0x21F00)
-T6054 22369:439.746 JLINK_ResetPullsRESET(ON)
-T6054 22369:439.764 - 0.022ms
-T6054 22369:439.780 JLINK_ResetNoHalt()
-T6054 22369:440.044   InitTarget() start
-T6054 22369:440.080    J-Link Script File: Executing InitTarget()
-T6054 22369:440.119   InitTarget()
-T6054 22369:442.380   InitTarget() end
-T6054 22369:443.046   Found SW-DP with ID 0x0BC11477
-T6054 22369:445.073   DPIDR: 0x0BC11477
-T6054 22369:445.121   AP map detection skipped. Manually configured AP map found.
-T6054 22369:445.168   AP[0]: AHB-AP (IDR: Not set)
-T6054 22369:446.108   AP[0]: Core found
-T6054 22369:446.152   AP[0]: AHB-AP ROM base: 0x41003000
-T6054 22369:446.634   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
-T6054 22369:446.680   Found Cortex-M0 r0p1, Little endian.
-T6054 22369:547.650   -- Max. mem block: 0x00002868
-T6054 22369:547.764   CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 22369:548.262   CPU_ReadMem(4 bytes @ 0xE0002000)
-T6054 22369:548.827   FPUnit: 4 code (BP) slots and 0 literal slots
-T6054 22369:548.905   CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 22369:549.319   CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 22369:549.920   CoreSight components:
-T6054 22369:550.022   ROMTbl[0] @ 41003000
-T6054 22369:550.046   CPU_ReadMem(64 bytes @ 0x41003000)
-T6054 22369:550.810   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
-T6054 22369:551.468   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
-T6054 22369:551.505   ROMTbl[1] @ E00FF000
-T6054 22369:551.522   CPU_ReadMem(64 bytes @ 0xE00FF000)
-T6054 22369:552.364   CPU_ReadMem(32 bytes @ 0xE000EFE0)
-T6054 22369:553.136   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
-T6054 22369:553.177   CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 22369:553.732   CPU_ReadMem(32 bytes @ 0xE0001FE0)
-T6054 22369:554.401   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
-T6054 22369:554.457   CPU_ReadMem(32 bytes @ 0xE0002FE0)
-T6054 22369:555.170   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
-T6054 22369:555.218   CPU_ReadMem(32 bytes @ 0x41006FE0)
-T6054 22369:555.852   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
-T6054 22369:555.896   JLINK_Reset()
-T6054 22369:555.912     CPU_ReadMem(4 bytes @ 0x20000000)
-T6054 22369:556.318     CPU_WriteMem(4 bytes @ 0x20000000)
-T6054 22369:556.918     ResetTarget() start
-T6054 22369:556.945      J-Link Script File: Executing ResetTarget()
-T6054 22369:557.371     CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 22369:557.871     CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 22369:558.454     CPU_WriteMem(4 bytes @ 0xE000ED0C)
-T6054 22369:560.818     CPU_ReadMem(4 bytes @ 0xE000EDF0)
-T6054 22369:561.385     CPU_ReadMem(4 bytes @ 0x41002100)
-T6054 22369:561.971     CPU_WriteMem(4 bytes @ 0xE000EDFC)
-T6054 22369:562.614     ResetTarget() end
-T6054 22369:566.423     CPU_WriteMem(4 bytes @ 0xE0002000)
-T6054 22369:567.022     CPU_ReadMem(4 bytes @ 0xE000EDFC)
-T6054 22369:567.707     CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 22369:568.270     CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 22369:568.941   - 13.099ms
-T6054 22369:569.006   JLINK_Go()
-T6054 22369:569.029     CPU_ReadMem(4 bytes @ 0xE0001000)
-T6054 22369:569.523     CPU_WriteMem(4 bytes @ 0xE0001000)
-T6054 22369:570.146     CPU_WriteMem(4 bytes @ 0xE0001004)
-T6054 22369:571.406   - 2.471ms
-T6054 22369:571.484 - 131.709ms
-T6054 22369:574.703 JLINK_Close()
-T6054 22369:606.434 - 31.791ms
-T6054 22369:606.628   
-T6054 22369:606.652   Closed
+T6054 25658:458.929   SEGGER J-Link V7.52a Log File
+T6054 25658:459.138   DLL Compiled: Jul 28 2021 11:08:12
+T6054 25658:459.164   Logging started @ 2023-12-18 05:15
+T6054 25658:459.188 - 7915.246ms
+T6054 25658:468.054 JLINK_ExecCommand("Device = ATSAMD21G18A", ...). 
+T6054 25658:468.407   Device "ATSAMD21G18" selected.
+T6054 25658:468.882 - 0.822ms returns 0x00
+T6054 25658:486.302 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T6054 25658:487.154 - 0.899ms returns 0x00
+T6054 25658:487.265 JLINK_SetSpeed(4000)
+T6054 25658:487.420 - 0.202ms
+T6054 25658:487.488 JLINK_ResetPullsRESET(OFF)
+T6054 25658:487.530 - 0.053ms
+T6054 25658:487.557 JLINK_Connect()
+T6054 25658:487.929   InitTarget() start
+T6054 25658:488.010    J-Link Script File: Executing InitTarget()
+T6054 25658:488.835   InitTarget()
+T6054 25658:491.575   InitTarget() end
+T6054 25658:492.717   Found SW-DP with ID 0x0BC11477
+T6054 25658:494.876   DPIDR: 0x0BC11477
+T6054 25658:494.934   Scanning AP map to find all available APs
+T6054 25658:495.535   AP[1]: Stopped AP scan as end of AP map has been reached
+T6054 25658:495.608   AP[0]: AHB-AP (IDR: 0x04770031)
+T6054 25658:495.671   Iterating through AP map to find AHB-AP to use
+T6054 25658:496.729   AP[0]: Core found
+T6054 25658:496.783   AP[0]: AHB-AP ROM base: 0x41003000
+T6054 25658:497.226   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T6054 25658:497.274   Found Cortex-M0 r0p1, Little endian.
+T6054 25658:598.867   -- Max. mem block: 0x00002BA8
+T6054 25658:599.165   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 25658:599.578   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T6054 25658:599.954   CPU_ReadMem(4 bytes @ 0xE0002000)
+T6054 25658:600.408   FPUnit: 4 code (BP) slots and 0 literal slots
+T6054 25658:600.451   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 25658:600.793   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 25658:601.201   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 25658:601.584   CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 25658:601.971   CoreSight components:
+T6054 25658:602.020   ROMTbl[0] @ 41003000
+T6054 25658:602.045   CPU_ReadMem(64 bytes @ 0x41003000)
+T6054 25658:602.714   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
+T6054 25658:603.263   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
+T6054 25658:603.296   ROMTbl[1] @ E00FF000
+T6054 25658:603.314   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T6054 25658:604.042   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T6054 25658:604.670   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
+T6054 25658:604.729   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T6054 25658:605.299   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
+T6054 25658:605.357   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T6054 25658:605.929   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
+T6054 25658:605.950   CPU_ReadMem(32 bytes @ 0x41006FE0)
+T6054 25658:606.495   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
+T6054 25658:606.529 - 118.978ms returns 0x00
+T6054 25658:606.623 JLINK_ExecCommand("ExcludeFlashCacheRange 0x0 - 0x40000", ...). 
+T6054 25658:606.644 - 0.006ms returns 0x00
+T6054 25658:606.695 JLINK_Halt()
+T6054 25658:609.491 - 2.836ms returns 0x00
+T6054 25658:610.993 JLINK_JTAG_GetDeviceID(DeviceIndex = 0)
+T6054 25658:611.011 - 0.022ms returns 0
+T6054 25658:611.029 JLINK_ReadMemU32(0x41002018, 0x1 Items)
+T6054 25658:611.051   CPU_ReadMem(4 bytes @ 0x41002018)
+T6054 25658:611.402   Data:  05 03 01 10
+T6054 25658:611.423 - 0.416ms returns 1 (0x1)
+T60E0 25658:620.199 JLINK_IsHalted()
+T60E0 25658:620.596 - 0.412ms returns TRUE
+T60E0 25658:620.645 JLINK_GetMOEs(...)
+T60E0 25658:620.667   CPU_ReadMem(4 bytes @ 0xE000ED30)
+T60E0 25658:621.008 - 0.381ms returns 0x01
+T60E0 25658:621.051 JLINK_ReadReg(R15 (PC))
+T60E0 25658:621.074 - 0.032ms returns 0x0000F9E0
+T6054 25658:737.628 JLINK_BeginDownload(Flags = 0x00000000)
+T6054 25658:737.716 - 0.095ms
+T6054 25658:737.777 JLINK_WriteMem(0x00000000, 0x26BFC Bytes, ...)
+T6054 25658:737.794   Data:  20 75 00 20 59 A8 01 00 51 A9 01 00 51 A9 01 00 ...
+T6054 25658:738.481   completely In flash
+T6054 25658:738.851    -- Read from flash cache (158716 bytes @ 0x00000000)
+T6054 25658:739.044 - 1.273ms returns 0x26BFC
+T6054 25658:739.319 JLINK_WriteMem(0x00026BFC, 0x2D4 Bytes, ...)
+T6054 25658:739.333   Data:  00 00 00 00 0C 00 00 00 00 00 00 00 00 00 00 00 ...
+T6054 25658:739.352   completely In flash
+T6054 25658:739.384    -- Read from flash cache (724 bytes @ 0x00026BFC)
+T6054 25658:739.401 - 0.089ms returns 0x2D4
+T60E0 25658:821.935 JLINK_IsHalted()
+T60E0 25658:821.997 - 0.068ms returns TRUE
+T6054 25658:822.916 JLINK_EndDownload()
+T6054 25658:823.167   CPU_ReadMem(4 bytes @ 0x41006004)
+T6054 25658:823.563   CPU_ReadMem(4 bytes @ 0xE000ED90)
+T6054 25658:824.079    -- --------------------------------------
+T6054 25658:824.104   Flash bank @ 0x00000000: Default: L2 verify disabled because algorithm performs L1 verify
+T6054 25658:824.118    -- Start of determining dirty areas in flash cache
+T6054 25658:824.211    -- End of determining dirty areas
+T6054 25658:824.226    -- Start of preparing flash programming
+T6054 25658:824.240    -- Calculating RAM usage
+T6054 25658:824.263    -- RAM usage = 10020 Bytes
+T6054 25658:824.277    -- Preserving CPU registers
+T6054 25658:824.305    -- Preparing memory
+T6054 25658:824.319    -- Preparing target
+T6054 25658:824.333    -- Preserving target RAM temporarily used for programming
+T6054 25658:877.020    -- Downloading RAMCode
+T6054 25658:893.525    -- Preparing RAMCode
+T6054 25658:899.715    -- Checking target RAM
+T6054 25658:901.823    -- End of preparing flash programming
+T6054 25658:902.032   Looking for J-Link GUI Server exe at: C:\Program Files (x86)\Atmel\Studio\7.0\atbackend\JLinkGUIServer.exe
+T6054 25658:902.150   Looking for J-Link GUI Server exe at: \JLinkGUIServer.exe
+T6054 25659:202.893   Failed to connect to J-Link GUI Server.
+T6054 25659:216.725    -- CPU speed could not be measured.
+T6054 25659:216.800    -- Start of comparing flash
+T6054 25659:216.846    -- CRC check was estimated as fastest method
+T6054 25659:216.870    -- Comparing range 0x0000 - 0x1FFFF (512 Sectors, 128 KiB), using multi-block CRC calculation
+T6054 25659:309.335    -- All CRCs match
+T6054 25659:309.378    -- Comparing range 0x20000 - 0x26EFF (111 Sectors, 27 KiB), using multi-block CRC calculation
+T6054 25659:331.373    -- All CRCs match
+T6054 25659:331.410    -- Comparing range 0x0000 - 0x1FFFF (512 Sectors, 128 KiB), using alternative multi-block CRC calculation
+T6054 25659:423.973    -- All CRCs match
+T6054 25659:424.032    -- Comparing range 0x20000 - 0x26EFF (111 Sectors, 27 KiB), using alternative multi-block CRC calculation
+T6054 25659:445.761    -- All CRCs match
+T6054 25659:445.820    -- End of comparing flash
+T6054 25659:445.856    -- Start of erasing sectors
+T6054 25659:445.870    -- End of erasing sectors
+T6054 25659:445.883    -- Start of flash programming
+T6054 25659:445.939    -- End of flash programming
+T6054 25659:445.952    -- Start of restoring
+T6054 25659:445.988    -- Restoring RAMCode
+T6054 25659:450.521    -- Restoring target memory
+T6054 25659:499.728    -- Restore target
+T6054 25659:499.762    -- Restore memory
+T6054 25659:499.776    -- Restoring CPU registers
+T6054 25659:499.813    -- End of restoring
+T6054 25659:499.873    -- Bank 0 @ 0x00000000: Skipped. Contents already match
+T6054 25659:499.888    -- Bank 0 @ 0x00000000: Skipped. Contents already match
+T6054 25659:505.452 - 682.568ms returns 0 (0x0)
+T6054 25659:505.981 JLINK_ResetPullsRESET(ON)
+T6054 25659:506.025 - 0.055ms
+T6054 25659:506.051 JLINK_ResetNoHalt()
+T6054 25659:506.446   InitTarget() start
+T6054 25659:506.517    J-Link Script File: Executing InitTarget()
+T6054 25659:506.558   InitTarget()
+T6054 25659:508.985   InitTarget() end
+T6054 25659:509.754   Found SW-DP with ID 0x0BC11477
+T6054 25659:512.075   DPIDR: 0x0BC11477
+T6054 25659:512.131   AP map detection skipped. Manually configured AP map found.
+T6054 25659:512.193   AP[0]: AHB-AP (IDR: Not set)
+T6054 25659:513.064   AP[0]: Core found
+T6054 25659:513.115   AP[0]: AHB-AP ROM base: 0x41003000
+T6054 25659:513.563   CPUID register: 0x410CC601. Implementer code: 0x41 (ARM)
+T6054 25659:513.679   Found Cortex-M0 r0p1, Little endian.
+T6054 25659:614.473   -- Max. mem block: 0x00002868
+T6054 25659:614.519   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 25659:614.921   CPU_ReadMem(4 bytes @ 0xE0002000)
+T6054 25659:615.581   FPUnit: 4 code (BP) slots and 0 literal slots
+T6054 25659:615.657   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 25659:616.110   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 25659:616.619   CoreSight components:
+T6054 25659:616.683   ROMTbl[0] @ 41003000
+T6054 25659:616.705   CPU_ReadMem(64 bytes @ 0x41003000)
+T6054 25659:617.508   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
+T6054 25659:618.181   ROMTbl[0][0]: E00FF000, CID: B105100D, PID: 000BB4C0 ROM Table
+T6054 25659:618.216   ROMTbl[1] @ E00FF000
+T6054 25659:618.232   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T6054 25659:618.985   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T6054 25659:619.568   ROMTbl[1][0]: E000E000, CID: B105E00D, PID: 000BB008 SCS
+T6054 25659:619.592   CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 25659:620.032   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T6054 25659:620.594   ROMTbl[1][1]: E0001000, CID: B105E00D, PID: 000BB00A DWT
+T6054 25659:620.616   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T6054 25659:621.324   ROMTbl[1][2]: E0002000, CID: B105E00D, PID: 000BB00B FPB
+T6054 25659:621.371   CPU_ReadMem(32 bytes @ 0x41006FE0)
+T6054 25659:622.079   ROMTbl[0][1]: 41006000, CID: B105900D, PID: 001BB932 MTB-M0+
+T6054 25659:622.143   JLINK_Reset()
+T6054 25659:622.169     CPU_ReadMem(4 bytes @ 0x20000000)
+T6054 25659:622.626     CPU_WriteMem(4 bytes @ 0x20000000)
+T6054 25659:623.317     ResetTarget() start
+T6054 25659:623.360      J-Link Script File: Executing ResetTarget()
+T6054 25659:623.767     CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 25659:624.303     CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 25659:624.884     CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T6054 25659:627.213     CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6054 25659:627.664     CPU_ReadMem(4 bytes @ 0x41002100)
+T6054 25659:628.022     CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T6054 25659:628.500     ResetTarget() end
+T6054 25659:632.119     CPU_WriteMem(4 bytes @ 0xE0002000)
+T6054 25659:632.835     CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6054 25659:633.462     CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 25659:634.009     CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 25659:634.447   - 12.370ms
+T6054 25659:634.526   JLINK_Go()
+T6054 25659:634.550     CPU_ReadMem(4 bytes @ 0xE0001000)
+T6054 25659:634.993     CPU_WriteMem(4 bytes @ 0xE0001000)
+T6054 25659:635.493     CPU_WriteMem(4 bytes @ 0xE0001004)
+T6054 25659:636.484   - 1.972ms
+T6054 25659:636.504 - 130.458ms
+T6054 25659:641.769 JLINK_Close()
+T6054 25659:680.665 - 38.952ms
+T6054 25659:680.734   
+T6054 25659:680.767   Closed

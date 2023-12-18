@@ -77,6 +77,7 @@ int main(void)
     vTraceEnable(TRC_START);
     // Start FreeRTOS scheduler
 	configure_pwm();
+	oled_update();
     vTaskStartScheduler();
 
     return 0;  // Will not get here

@@ -109,3 +109,5 @@ uint32_t veml6030_int_en(uint16_t en);
 bool veml6030_read_res(double *resals, double *resw);
 
 void vCoinDetectionTask(void *pvParametersr);
+
+void oled_update();

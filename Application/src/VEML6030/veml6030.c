@@ -6,6 +6,7 @@
 #include "SerialConsole.h"
 #include "math.h"
 #include "WifiHandlerThread/WifiHandler.h"
+#include "SSD1306/SSD1306.h"
 
 
 // Raw to lux conversion
@@ -324,7 +325,48 @@ void vCoinDetectionTask(void *pvParametersr) {
 			}
 		} else {
 			//continue;
+			//oled_update();
 		}
 
 	}
+}
+
+void oled_update(){
+	i2c_begin();
+	i2c_clear();
+	i2c_setCursor(0, 0);  //line 1 x,y
+	char _char0[14] = {'W','e','l','c','o','m','e',' ','t','o',' ','t','h','e'};
+	for(uint8_t a = 0; a < 14; a++)
+	{
+		i2c_write_char(_char0[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 1);  //line 2 x,y
+	char _char1[13] = {'C','o','1','n','1','o','T',' ','B','a','n','k','!'};
+	for(uint8_t a = 0; a < 13; a++)
+	{
+		i2c_write_char(_char1[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 2);  //x,y
+	char _char4[13] = {'Y','o','u','r',' ','B','a','l','a','n','c','e',':'};
+	for(uint8_t a = 0; a < 13; a++)
+	{
+		i2c_write_char(_char4[a]);
+		delay_ms(200);
+	}
+	i2c_setCursor(0, 3);  //x,y
+	//i2c test
+	for(uint8_t a = 1; a < 10; a++)
+	{
+		i2c_writeDigit(a);
+	}
+	delay_ms(200);
+		
+	//uart test
+	//	puts("-- PDC_UART Example --\r");
+		
+
+	i2c_setCursor(0, 3);  //x,y
+	i2c_write_char('\n');
 }
