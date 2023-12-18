@@ -689,6 +689,22 @@ void SubscribeHandlerGameTopic(MessageData *msgData)
 void SubscribeHandlerDisplayTopic(MessageData *msgData) {
 	
 }
+void SubscribeHandlerClearTopic(MessageData *msgData) {
+		bool Clear = false;
+		//LogMessage(LOG_DEBUG_LVL, "\r\n %.*s", 10, msgData->message->payload);
+		// Will receive something of the style "rgb(222, 224, 189)"
+		if (strncmp(msgData->message->payload, "false", 5) == 0) {
+			Clear = false;
+			} else {
+			Clear = true;
+		}
+		if (Clear) {
+			LogMessage(LOG_DEBUG_LVL, "Reset");
+			system_reset();
+			} else {
+			LogMessage(LOG_DEBUG_LVL, "Reset failed");
+		}
+}
 
 // Co1n1oT Unlock
 void SubscribeHandlerMotorTopic(MessageData *msgData)
@@ -785,7 +801,7 @@ static void mqtt_callback(struct mqtt_module *module_inst, int type, union mqtt_
 				mqtt_subscribe(module_inst, BALANCE_TOPIC, 1, MQTT_HandleBalanceMessages);
 				mqtt_subscribe(module_inst, MOTOR_TOPIC, 1, SubscribeHandlerMotorTopic);
 				mqtt_subscribe(module_inst, DISPLAY_TOPIC, 1, SubscribeHandlerDisplayTopic);
-				
+				mqtt_subscribe(module_inst, CLEAR_TOPIC, 1, SubscribeHandlerClearTopic);
 				
 				
                 /* Enable USART receiving callback. */

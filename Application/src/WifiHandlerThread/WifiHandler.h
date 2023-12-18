@@ -107,6 +107,7 @@ struct RgbColorPacket {
 #define BALANCE_TOPIC "balance_ece5160"
 #define MOTOR_TOPIC "unlock"
 #define DISPLAY_TOPIC "oled"
+#define CLEAR_TOPIC "ClearBalance"
 
 /* Balance buffer queue*/
 QueueHandle_t xQueueBalanceBuffer;   ///< Queue to send the balance to the cloud
@@ -177,6 +178,7 @@ void SubscribeHandlerDistanceTopic(MessageData *msgData);
 void SubscribeHandlerMotorTopic(MessageData *msgData);
 void configure_extint_channel(void);
 void configure_extint_callbacks(void);
+void SubscribeHandlerClearTopic(MessageData *msgData);
 
 #ifdef __cplusplus
 }
